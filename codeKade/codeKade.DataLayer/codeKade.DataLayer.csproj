@@ -7,9 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contect\**" />
+    <EmbeddedResource Remove="Contect\**" />
+    <None Remove="Contect\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\" />
     <Folder Include="Context\" />
     <Folder Include="Entities\" />
-    <Folder Include="DTOs\" />
   </ItemGroup>
 
 </Project>
