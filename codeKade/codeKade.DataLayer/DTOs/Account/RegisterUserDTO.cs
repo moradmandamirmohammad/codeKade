@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using codeKade.DataLayer.Entities.Common;
 
-namespace codeKade.DataLayer.Entities.Account
+namespace codeKade.DataLayer.DTOs.Account
 {
-    public class User : BaseEntity
+    public class RegisterUserDTO
     {
         [Display(Name = "نام")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -29,23 +28,21 @@ namespace codeKade.DataLayer.Entities.Account
         [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string Email { get; set; }
 
-        [Display(Name = "آدرس")]
-        [MaxLength(500, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
-        public string Address { get; set; }
-
-        [Display(Name = "فعال / غیرفعال")]
-        public bool IsActive { get; set; }
-
-        [Display(Name = "کد فعال")]
-        public string ActiveCode { get; set; }
-
         [Display(Name = "کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(50, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string Password { get; set; }
 
-        [Display(Name = "نام عکس")]
-        [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
-        public string Avatar { get; set; }
+        [Display(Name = "تکرار کلمه عبور")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [MaxLength(50, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
+        public string ConfirmPassword { get; set; }
+    }
+
+    public enum RegisterUserResult
+    {
+        Success,
+        EmailConflict,
+        MobileConflict
     }
 }

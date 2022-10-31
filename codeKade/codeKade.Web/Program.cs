@@ -1,4 +1,6 @@
 using codeKade.DataLayer.Context;
+using codeKade.DataLayer.Repository.Implementations;
+using codeKade.DataLayer.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,12 @@ var connectionString = builder.Configuration.GetConnectionString("CodeKadeConnec
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+#region DI
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
+
+#endregion
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();

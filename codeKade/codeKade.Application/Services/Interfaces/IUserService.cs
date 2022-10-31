@@ -1,7 +1,9 @@
-﻿namespace codeKade.Application.Services.Interfaces
+﻿using codeKade.DataLayer.DTOs.Account;
+
+namespace codeKade.Application.Services.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IAsyncDisposable
     {
-        int Add()
+        Task<RegisterUserResult> Register(RegisterUserDTO register);
     }
 }

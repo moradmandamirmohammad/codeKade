@@ -3,7 +3,7 @@ using codeKade.DataLayer.Context;
 using codeKade.DataLayer.Entities.Common;
 using codeKade.DataLayer.Repository.Interfaces;
 
-namespace TopLearnCore.DataLayer.Repository.Implementations
+namespace codeKade.DataLayer.Repository.Implementations
 {
     public class GenericRepositoy<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {
