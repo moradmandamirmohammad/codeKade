@@ -1,3 +1,4 @@
+using codeKade.Application.Security;
 using codeKade.Application.Services.Implementations;
 using codeKade.Application.Services.Interfaces;
 using codeKade.DataLayer.Context;
@@ -17,6 +18,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 #region DI
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
+builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IUserService,UserService>();
 
 #endregion

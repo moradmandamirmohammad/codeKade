@@ -26,12 +26,13 @@ namespace codeKade.DataLayer.Entities.Account
         public string Mobile { get; set; }
 
         [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string Email { get; set; }
 
         [Display(Name = "آدرس")]
         [MaxLength(500, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [Display(Name = "فعال / غیرفعال")]
         public bool IsActive { get; set; }

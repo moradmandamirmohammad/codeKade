@@ -1,4 +1,4 @@
-﻿@codeKade.DataLayer.DTOs.Account.RegisterUserDTO
+﻿@model codeKade.DataLayer.DTOs.Account.RegisterUserDTO
 @{
     ViewData["Title"] = "ثبت نام";
 }
@@ -10,14 +10,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-title">ثبت نام </h1>
+                <h1 class="page-title">@ViewData["Title"]</h1>
                 <div class="breadcrumb">
                     <ul>
                         <li>
                             <a href="index.html">خانه</a>
                         </li>
                         <li>
-                            <a href="dashboard.html">ثبت نام </a>
+                            <a href="dashboard.html">@ViewData["Title"] </a>
                         </li>
                     </ul>
                 </div>
@@ -39,7 +39,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
-                <form action="#">
+                <form asp-action="Register" method="post">
                     <div class="cardify signup_form">
                         <div class="login--header">
                             <h3>ایجاد حساب کاربری</h3>
@@ -52,28 +52,39 @@
                         <div class="login--form">
 
                             <div class="form-group">
-                                <label for="urname">نام </label>
-                                <input id="urname" type="text" class="text_field" placeholder="">
+                                <label>نام </label>
+                                <input asp-for="FirstName" type="text" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="FirstName"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="email_ad">ایمیل</label>
-                                <input id="email_ad" type="email" class="text_field" placeholder="">
+                                <label>نام خانوادگی </label>
+                                <input asp-for="LastName" type="text" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="LastName"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="user_name">نام کاربری </label>
-                                <input id="user_name" type="text" class="text_field" placeholder="">
+                                <label>ایمیل</label>
+                                <input asp-for="Email" type="email" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>شماره تلفن</label>
+                                <input asp-for="Mobile" type="text" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="Mobile"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="password">کلمه عبور </label>
-                                <input id="password" type="password" class="text_field" placeholder="">
+                                <label>کلمه عبور </label>
+                                <input asp-for="Password" type="password" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="Password"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="con_pass">تایید رمز عبور</label>
-                                <input id="con_pass" type="text" class="text_field" placeholder="">
+                                <label>تکرار رمز عبور</label>
+                                <input asp-for="ConfirmPassword" type="password" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
                             </div>
 
                             <button class="btn btn--md btn--round register_btn" type="submit">ثبت نام</button>

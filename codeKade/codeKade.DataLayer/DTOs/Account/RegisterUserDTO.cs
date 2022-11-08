@@ -25,6 +25,7 @@ namespace codeKade.DataLayer.DTOs.Account
         public string Mobile { get; set; }
 
         [Display(Name = "ایمیل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string Email { get; set; }
 
@@ -36,6 +37,7 @@ namespace codeKade.DataLayer.DTOs.Account
         [Display(Name = "تکرار کلمه عبور")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(50, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
+        [Compare("Password", ErrorMessage = "کلمه های عبور مغایرت دارند")]
         public string ConfirmPassword { get; set; }
     }
 
