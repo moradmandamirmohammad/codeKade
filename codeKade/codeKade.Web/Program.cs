@@ -1,3 +1,5 @@
+using codeKade.Application.Services.Implementations;
+using codeKade.Application.Services.Interfaces;
 using codeKade.DataLayer.Context;
 using codeKade.DataLayer.Repository.Implementations;
 using codeKade.DataLayer.Repository.Interfaces;
@@ -15,6 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 #region DI
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
+builder.Services.AddScoped<IUserService,UserService>();
 
 #endregion
 
