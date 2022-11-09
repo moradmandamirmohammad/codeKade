@@ -1,8 +1,10 @@
 ﻿using System.Security.Claims;
+using codeKade.Application.Senders;
 using codeKade.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using codeKade.Web.Controllers;
 using codeKade.DataLayer.DTOs.Account;
+using codeKade.Web.Convertors;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -13,10 +15,12 @@ public class AccountController : BaseController
     #region constractor
 
     private readonly IUserService _userService;
+    private readonly IViewRenderService _viewRenderService;
 
-    public AccountController(IUserService userService)
+    public AccountController(IUserService userService, IViewRenderService viewRenderService)
     {
         _userService = userService;
+        _viewRenderService = viewRenderService;
     }
 
     #endregion
@@ -55,6 +59,10 @@ public class AccountController : BaseController
                 return View(register);
                 break;
             case RegisterUserResult.Success:
+                var email = register.Email;
+                var user = await _userService.GetEntityByEmail(email);
+                var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
+                EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
                 return Redirect("/");
                 //Kavenegar.KavenegarApi api = new Kavenegar.KavenegarApi("486448347338723668753172656168572F5876356D787A55414B3343557A7752734350477430583669436B3D");
                 //var result = api.Send("10008663", "09376443976", $"سلام {user.UserName} عزیز برای فعالسازی حساب کاربری خود در تاپ لرن روی لینک زیر کلیک کن  https://localhost:44341/ActiveAccount/{user.ActiveCode}");
@@ -76,6 +84,13 @@ public class AccountController : BaseController
     public IActionResult Login()
     {
         return View();
+    }
+
+    [HttpGet("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync();
+        return Redirect("/");
     }
 
     [HttpPost("login")]

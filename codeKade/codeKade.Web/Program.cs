@@ -4,9 +4,13 @@ using codeKade.Application.Services.Interfaces;
 using codeKade.DataLayer.Context;
 using codeKade.DataLayer.Repository.Implementations;
 using codeKade.DataLayer.Repository.Interfaces;
+using codeKade.Web.Convertors;
+using codeKade.Web.HttpContext;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +25,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositoy<>));
 builder.Services.AddScoped<IPasswordHelper, PasswordHelper>();
 builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddScoped<IViewRenderService, ViewRenderService>();
 
 #endregion
 
@@ -41,8 +48,6 @@ builder.Services.AddAuthentication(options =>
 
 #endregion
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -70,6 +75,9 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+
+SiteCurrentContext.Configure(((IApplicationBuilder)app).ApplicationServices.GetRequiredService<IHttpContextAccessor>());
+
+//app.MapRazorPages();
 
 app.Run();

@@ -357,73 +357,76 @@ START MENU AREA
 <!--start .author__notification_area -->
 
 <!--start .author-author__info-->
-
+@if (User.Identity.IsAuthenticated)
+{
     <div class="author-author__info inline has_dropdown">
-    <div class="author__avatar">
-        <img src="/images/usr_avatar.png" alt="user avatar">
+        <div class="author__avatar">
+            <img src="/images/usr_avatar.png" alt="user avatar">
 
-    </div>
-    <div class="autor__info">
-        <p class="name">
-            @User.Identity.Name
-        </p>
-        <!--<p class="ammount">2000 تومان</p>-->
-    </div>
+        </div>
+        <div class="autor__info">
+            <p class="name">
+                @User.Identity.Name
+            </p>
+            <!--<p class="ammount">2000 تومان</p>-->
+        </div>
 
-    <div class="dropdowns dropdown--author">
-        <ul>
-            <li>
-                <a href="author.html">
-                    <span class="lnr lnr-user"></span>پروفایل </a>
-            </li>
-            <li>
-                <a href="dashboard.html">
-                    <span class="lnr lnr-home"></span>داشبورد</a>
-            </li>
-            <li>
-                <a href="dashboard-setting.html">
-                    <span class="lnr lnr-cog"></span> تنظیمات</a>
-            </li>
-            <li>
-                <a href="cart.html">
-                    <span class="lnr lnr-cart"></span>خرید ها</a>
-            </li>
-            <li>
-                <a href="favourites.html">
-                    <span class="lnr lnr-heart"></span> علاقه مندی ها </a>
-            </li>
-            <li>
-                <a href="dashboard-add-credit.html">
-                    <span class="lnr lnr-dice"></span>کارت تخفیف</a>
-            </li>
-            <li>
-                <a href="dashboard-statement.html">
-                    <span class="lnr lnr-chart-bars"></span>بیانیه فروش</a>
-            </li>
-            <li>
-                <a href="dashboard-upload.html">
-                    <span class="lnr lnr-upload"></span>آپلود ایتم </a>
-            </li>
-            <li>
-                <a href="dashboard-manage-item.html">
-                    <span class="lnr lnr-book"></span>مدیریت آیتم ها</a>
-            </li>
-            <li>
-                <a href="dashboard-withdrawal.html">
-                    <span class="lnr lnr-briefcase"></span>برداشت ها </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="lnr lnr-exit"></span>خروج </a>
-            </li>
-        </ul>
+        <div class="dropdowns dropdown--author">
+            <ul>
+                <li>
+                    <a href="author.html">
+                        <span class="lnr lnr-user"></span>پروفایل </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="lnr lnr-home"></span>داشبورد</a>
+                </li>
+                <li>
+                    <a href="dashboard-setting.html">
+                        <span class="lnr lnr-cog"></span> تنظیمات</a>
+                </li>
+                <li>
+                    <a href="cart.html">
+                        <span class="lnr lnr-cart"></span>خرید ها</a>
+                </li>
+                <li>
+                    <a href="favourites.html">
+                        <span class="lnr lnr-heart"></span> علاقه مندی ها </a>
+                </li>
+                <li>
+                    <a href="dashboard-add-credit.html">
+                        <span class="lnr lnr-dice"></span>کارت تخفیف</a>
+                </li>
+                <li>
+                    <a href="dashboard-statement.html">
+                        <span class="lnr lnr-chart-bars"></span>بیانیه فروش</a>
+                </li>
+                <li>
+                    <a href="dashboard-upload.html">
+                        <span class="lnr lnr-upload"></span>آپلود ایتم </a>
+                </li>
+                <li>
+                    <a href="dashboard-manage-item.html">
+                        <span class="lnr lnr-book"></span>مدیریت آیتم ها</a>
+                </li>
+                <li>
+                    <a href="dashboard-withdrawal.html">
+                        <span class="lnr lnr-briefcase"></span>برداشت ها </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="lnr lnr-exit"></span>خروج </a>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
-
-<a class="go_cart" href="/login">ورود </a>
+}
+else
+{
+    <a class="go_cart" href="/login">ورود </a>
     <span>/</span>
     <a class="go_checkout" href="/register">ثبت نام </a>
-
+}
 <!--end /.author-author__info-->
 </div>
 <!-- end .author-area -->
