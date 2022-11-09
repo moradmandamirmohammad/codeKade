@@ -1,0 +1,97 @@
+﻿@model codeKade.DataLayer.DTOs.Account.LoginUserDTO
+@{
+    ViewData["Title"] = "ورود";
+}
+
+<!--================================
+    START BREADCRUMB AREA
+=================================-->
+<section class="breadcrumb-area dir-rtl">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="page-title">@ViewData["Title"] </h1>
+                <div class="breadcrumb">
+                    <ul>
+                        <li>
+                            <a href="index.html">خانه</a>
+                        </li>
+                        <li>
+                            <a href="dashboard.html">@ViewData["Title"] </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- end /.col-md-12 -->
+        </div>
+        <!-- end /.row -->
+    </div>
+    <!-- end /.container -->
+</section>
+<!--================================
+    END BREADCRUMB AREA
+=================================-->
+
+<!--================================
+        START LOGIN AREA
+=================================-->
+<section class="login_area section--padding2 dir-rtl">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <form asp-action="Login" method="post">
+                    <div class="cardify login">
+                        <div class="login--header">
+                            <h3>خوش آمدید</h3>
+                            <p>شما می توانید با نام کاربری خود وارد شوید</p>
+                        </div>
+                        <!-- end .login_header -->
+
+                        <div class="login--form">
+                            <div class="form-group">
+                                <label>ایمیل</label>
+                                <input asp-for="Email" type="email" class="text_field" placeholder="">
+                            <span class="text-danger" asp-validation-for="Email"></span>
+                                </div>
+
+                            <div class="form-group">
+                                <label>کلمه عبور </label>
+                                <input asp-for="Password" type="password" class="text_field" placeholder="">
+                                <span class="text-danger" asp-validation-for="Password"></span>
+                                </div>
+
+                            <div class="form-group">
+                                <div class="custom_checkbox">
+                                    <input asp-for="RememberMe" type="checkbox">
+                                    <label for="ch2">
+                                        <span class="shadow_checkbox"></span>
+                                        <span class="label_text">مرا به خاطر بسپار </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn--md btn--round" type="submit">ورود </button>
+
+                            <div class="login_assist">
+                                <p class="recover">
+                                    <a href="pass-recovery.html">کلمه عبور </a> فراموش کرده اید ؟</p>
+                                <p class="signup">هنوز
+                                    <a href="/register">ثبت نام </a>  نکرده اید ؟</p>
+                            </div>
+                        </div>
+                        <!-- end .login--form -->
+                    </div>
+                    <!-- end .cardify -->
+                </form>
+            </div>
+            <!-- end .col-md-6 -->
+        </div>
+        <!-- end .row -->
+    </div>
+    <!-- end .container -->
+</section>
+<!--================================
+        END LOGIN AREA
+=================================-->
+

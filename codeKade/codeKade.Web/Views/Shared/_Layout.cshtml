@@ -357,14 +357,15 @@ START MENU AREA
 <!--start .author__notification_area -->
 
 <!--start .author-author__info-->
-<div class="author-author__info inline has_dropdown">
+
+    <div class="author-author__info inline has_dropdown">
     <div class="author__avatar">
         <img src="/images/usr_avatar.png" alt="user avatar">
 
     </div>
     <div class="autor__info">
         <p class="name">
-            رضا رضایی
+            @User.Identity.Name
         </p>
         <!--<p class="ammount">2000 تومان</p>-->
     </div>
@@ -418,6 +419,11 @@ START MENU AREA
         </ul>
     </div>
 </div>
+
+<a class="go_cart" href="/login">ورود </a>
+    <span>/</span>
+    <a class="go_checkout" href="/register">ثبت نام </a>
+
 <!--end /.author-author__info-->
 </div>
 <!-- end .author-area -->

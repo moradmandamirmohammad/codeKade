@@ -25,6 +25,14 @@ namespace codeKade.Application.Services.Implementations
             }
         }
 
+        public async Task<User> GetEntityByEmail(string email)
+        {
+
+            var user = await _userRepository.GetEntityQuery().FirstOrDefaultAsync(s => s.Email == email);
+            return user;
+
+        }
+
         public async Task<RegisterUserResult> Register(RegisterUserDTO register)
         {
             var IsExists = await _userRepository.GetEntityQuery().AnyAsync(s => s.Email == register.Email && s.IsActive == true);
@@ -45,6 +53,20 @@ namespace codeKade.Application.Services.Implementations
             await _userRepository.AddEntity(user);
             await _userRepository.SaveChanges();
             return RegisterUserResult.Success;
+        }
+
+        public async Task<LoginUserResult> LoginUser(LoginUserDTO login)
+        {
+            var user = await _userRepository.GetEntityQuery().FirstOrDefaultAsync(s => s.Email == login.Email && s.Password == _passwordHelper.EncodePasswordMd5(login.Password));
+            if (user == null)
+            {
+                return LoginUserResult.NotFound;
+            }
+            if (user.IsActive == false)
+            {
+                return LoginUserResult.NotActive;
+            }
+            return LoginUserResult.Success;
         }
     }
 }

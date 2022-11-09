@@ -1,7 +1,10 @@
-﻿using codeKade.Application.Services.Interfaces;
+﻿using System.Security.Claims;
+using codeKade.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using codeKade.Web.Controllers;
 using codeKade.DataLayer.DTOs.Account;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace codeKade.Web.Controllers;
 
@@ -17,6 +20,8 @@ public class AccountController : BaseController
     }
 
     #endregion
+
+    #region Regsiter
 
     [HttpGet("register")]
     public IActionResult Register()
@@ -61,4 +66,62 @@ public class AccountController : BaseController
 
         return Redirect("/");
     }
+
+
+    #endregion
+
+    #region Login
+
+    [HttpGet("login")]
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginUserDTO login)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(login);
+        }
+
+        var res = await _userService.LoginUser(login);
+
+        switch (res)
+        {
+            case LoginUserResult.NotActive:
+                ModelState.AddModelError("Email", "ایمیل وارد شده هنور فعال نشده است");
+                return View(login);
+                break;
+            case LoginUserResult.NotFound:
+                ModelState.AddModelError("Email", "کاربری با مشخصات وارد شده پیدا نشد");
+                return View(login);
+                break;
+            case LoginUserResult.Success:
+                var user = await _userService.GetEntityByEmail(login.Email);
+                var claims = new List<Claim> {
+                    new Claim(ClaimTypes.Email,user.Email),
+                    new Claim(ClaimTypes.NameIdentifier,user.ID.ToString()),
+                    new Claim(ClaimTypes.Name,user.FirstName)
+                };
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var prencipal = new ClaimsPrincipal(identity);
+                var properties = new AuthenticationProperties
+                {
+                    IsPersistent = login.RememberMe,
+                };
+                await HttpContext.SignInAsync(prencipal, properties);
+                //if (returnUrl == null)
+                //{
+                //    return RedirectToAction("Index", "Home");
+                //}
+                //return Redirect(returnUrl);
+            break;
+        }
+
+        return Redirect("/");
+    }
+
+    #endregion
 }

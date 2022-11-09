@@ -1,9 +1,14 @@
 ﻿using codeKade.DataLayer.DTOs.Account;
+using codeKade.DataLayer.Entities.Account;
 
 namespace codeKade.Application.Services.Interfaces
 {
     public interface IUserService : IAsyncDisposable
     {
         Task<RegisterUserResult> Register(RegisterUserDTO register);
+
+        Task<LoginUserResult> LoginUser(LoginUserDTO login);
+
+        Task<User> GetEntityByEmail(string email);
     }
 }
