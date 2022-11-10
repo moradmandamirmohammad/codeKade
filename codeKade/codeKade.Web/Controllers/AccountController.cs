@@ -17,6 +17,7 @@ public class AccountController : BaseController
     private readonly IUserService _userService;
     private readonly IViewRenderService _viewRenderService;
 
+
     public AccountController(IUserService userService, IViewRenderService viewRenderService)
     {
         _userService = userService;
@@ -59,13 +60,10 @@ public class AccountController : BaseController
                 return View(register);
                 break;
             case RegisterUserResult.Success:
-                var email = register.Email;
-                var user = await _userService.GetEntityByEmail(email);
-                var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
-                EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
+                var user = await _userService.GetEntityByEmail(register.Email);
+                Kavenegar.KavenegarApi api = new Kavenegar.KavenegarApi("486448347338723668753172656168572F5876356D787A55414B3343557A7752734350477430583669436B3D");
+                var result = api.Send("1000596446", "09376443976", $"سلام {user.FirstName} عزیز برای فعالسازی حساب کاربری خود در تاپ لرن روی لینک زیر کلیک کن  https://localhost:44341/ActiveAccount/{user.ActiveCode}");
                 return Redirect("/");
-                //Kavenegar.KavenegarApi api = new Kavenegar.KavenegarApi("486448347338723668753172656168572F5876356D787A55414B3343557A7752734350477430583669436B3D");
-                //var result = api.Send("10008663", "09376443976", $"سلام {user.UserName} عزیز برای فعالسازی حساب کاربری خود در تاپ لرن روی لینک زیر کلیک کن  https://localhost:44341/ActiveAccount/{user.ActiveCode}");
                 break;
 
 
