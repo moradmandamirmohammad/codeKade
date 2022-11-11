@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace codeKade.Web.Controllers;
-
-public class BaseController : Controller
+namespace codeKade.Web.Controllers
 {
     public class SiteBaseController : Controller
     {

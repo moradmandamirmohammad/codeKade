@@ -1,3 +1,5 @@
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using codeKade.Application.Security;
 using codeKade.Application.Services.Implementations;
 using codeKade.Application.Services.Interfaces;
@@ -47,6 +49,13 @@ builder.Services.AddAuthentication(options =>
 });
 
 #endregion
+
+#region html encoder
+
+builder.Services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.BasicLatin, UnicodeRanges.Arabic }));
+
+#endregion
+
 
 builder.Services.AddControllersWithViews();
 

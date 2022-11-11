@@ -2,7 +2,6 @@
 using codeKade.Application.Senders;
 using codeKade.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using codeKade.Web.Controllers;
 using codeKade.DataLayer.DTOs.Account;
 using codeKade.Web.Convertors;
 using Microsoft.AspNetCore.Authentication;
@@ -10,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace codeKade.Web.Controllers;
 
-public class AccountController : BaseController
+public class AccountController : SiteBaseController
 {
     #region constractor
 
@@ -60,9 +59,11 @@ public class AccountController : BaseController
                 return View(register);
                 break;
             case RegisterUserResult.Success:
-                var user = await _userService.GetEntityByEmail(register.Email);
-                Kavenegar.KavenegarApi api = new Kavenegar.KavenegarApi("486448347338723668753172656168572F5876356D787A55414B3343557A7752734350477430583669436B3D");
-                var result = api.Send("1000596446", "09376443976", $"سلام {user.FirstName} عزیز برای فعالسازی حساب کاربری خود در تاپ لرن روی لینک زیر کلیک کن  https://localhost:44341/ActiveAccount/{user.ActiveCode}");
+                var email = register.Email;
+                var user = await _userService.GetEntityByEmail(email);
+                var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
+                EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
+                TempData[SuccessMessage] = "ایمیل فعالسازی برای شما ارسال شد";
                 return Redirect("/");
                 break;
 
@@ -88,6 +89,7 @@ public class AccountController : BaseController
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync();
+        TempData[SuccessMessage] = "شما با موفقیت خارج شدید";
         return Redirect("/");
     }
 
@@ -130,6 +132,7 @@ public class AccountController : BaseController
                 //    return RedirectToAction("Index", "Home");
                 //}
                 //return Redirect(returnUrl);
+                TempData[SuccessMessage] = user.FirstName + " " + "عزیز خوش آمدید";
             break;
         }
 
