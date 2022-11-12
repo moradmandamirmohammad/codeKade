@@ -10,5 +10,11 @@ namespace codeKade.Web.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult Test()
+        {
+            return Redirect("/");
+        }
+
     }
 }

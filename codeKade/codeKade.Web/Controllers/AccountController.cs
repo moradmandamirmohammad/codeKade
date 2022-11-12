@@ -127,13 +127,8 @@ public class AccountController : SiteBaseController
                     IsPersistent = login.RememberMe,
                 };
                 await HttpContext.SignInAsync(prencipal, properties);
-                //if (returnUrl == null)
-                //{
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //return Redirect(returnUrl);
                 TempData[SuccessMessage] = user.FirstName + " " + "عزیز خوش آمدید";
-            break;
+                break;
         }
 
         return Redirect("/");
