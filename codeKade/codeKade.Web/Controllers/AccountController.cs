@@ -118,7 +118,8 @@ public class AccountController : SiteBaseController
                 var claims = new List<Claim> {
                     new Claim(ClaimTypes.Email,user.Email),
                     new Claim(ClaimTypes.NameIdentifier,user.ID.ToString()),
-                    new Claim(ClaimTypes.Name,user.FirstName)
+                    new Claim(ClaimTypes.Name,user.FirstName),
+                    new Claim(ClaimTypes.Actor,user.Avatar)
                 };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 var prencipal = new ClaimsPrincipal(identity);
@@ -128,6 +129,7 @@ public class AccountController : SiteBaseController
                 };
                 await HttpContext.SignInAsync(prencipal, properties);
                 TempData[SuccessMessage] = user.FirstName + " " + "عزیز خوش آمدید";
+                TempData["user_avatar"] = user.Avatar;
                 break;
         }
 

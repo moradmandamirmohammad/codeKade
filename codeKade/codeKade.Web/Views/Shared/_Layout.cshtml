@@ -1,4 +1,5 @@
-﻿
+﻿@using codeKade.Application.PathExtentions
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -167,7 +168,7 @@ START MENU AREA
 {
     <div class="author-author__info inline has_dropdown">
         <div class="author__avatar">
-            <img src="/images/usr_avatar.png" alt="user avatar">
+            <img src="@(TempData["user_avatar"] != null ? PathTools.UserImagePath + TempData["user_avatar"] : PathTools.DefaultUserImage)" alt="user avatar">
 
         </div>
         <div class="autor__info">
