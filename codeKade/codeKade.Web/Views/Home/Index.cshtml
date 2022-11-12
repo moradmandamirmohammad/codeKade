@@ -1,5 +1,8 @@
-﻿@{
+﻿@using codeKade.DataLayer.Entities.Event
+@{
     ViewData["Title"] = "صفحه اصلی";
+    List<Event> ActiveEvent = ViewBag.ActiveEvents as List<Event>;
+    
 }
 
 <!--================================
@@ -143,412 +146,7 @@ END FEATURE AREA
 =================================-->
 
 
-<!--================================
-START FEATURED PRODUCT AREA
-=================================-->
-<section class="featured-products bgcolor  section--padding ">
-<!-- start /.container -->
-<div class="container">
-    <!-- start row -->
-    <div class="row">
-        <!-- start col-md-12 -->
-        <div class="col-md-12">
-            <div class="product-title-area ">
-                <div class="product__title">
-                    <h2>محصولات ویژه هفتگی</h2>
-                </div>
 
-                <div class="product__slider-nav rounded">
-                    <span class="lnr lnr-chevron-left nav_left"></span>
-                    <span class="lnr lnr-chevron-right nav_right"></span>
-                </div>
-            </div>
-        </div>
-        <!-- end /.col-md-12 -->
-    </div>
-    <!-- end /.row -->
-</div>
-
-<!-- start .featured-product-slider -->
-
-
-<div class="container">
-<div class="row">
-<div class="col-md-12 no0-padding">
-<div class="featured-product-slider prod-slider1">
-<div class="featured__single-slider">
-    <div class="featured__preview-img">
-        <img src="/images/new/featprod.jpg" alt="Featured products">
-        <div class="prod_btn">
-            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-            <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-        </div>
-    </div>
-    <!-- end /.featured__preview-img -->
-
-    <div class="featured__product-description">
-        <div class="product-desc desc--featured">
-            <a href="single-product.html" class="product_title">
-                <h4>نمونه کارها / قالب رزومه</h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span> ورد پرس </a>
-                </li>
-            </ul>
-            <!-- end /.titlebtm -->
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                می باشد. </p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product_data">
-            <div class="tags tags--round">
-                <ul>
-                    <li>
-                        <a href="#">وب سایت </a>
-                    </li>
-                    <li>
-                        <a href="#">افزونه </a>
-                    </li>
-                    <li>
-                        <a href="#">صفحه intro</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- end /.tags -->
-            <div class="product-purchase featured--product-purchase">
-                <div class="price_love">
-                    <span>  10 تومان -  50 تو مان</span>
-                    <p>
-                        <span class="lnr lnr-heart"></span> 90</p>
-                </div>
-                <div class="sell">
-                    <p>
-                        <span class="lnr lnr-cart"></span>
-                        <span>16</span>
-                    </p>
-                </div>
-
-                <div class="rating product--rating">
-                    <ul>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- end /.product-purchase -->
-        </div>
-    </div>
-    <!-- end /.featured__product-description -->
-</div>
-<!--end /.featured__single-slider-->
-
-<div class="featured__single-slider">
-    <div class="featured__preview-img">
-        <img src="/images/new/featprod.jpg" alt="Featured products">
-        <div class="prod_btn">
-            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-            <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-        </div>
-    </div>
-    <!-- end /.featured__preview-img -->
-
-    <div class="featured__product-description">
-        <div class="product-desc desc--featured">
-            <a href="single-product.html" class="product_title">
-                <h4>قالب فروشگاهی </h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span> ورد پرس </a>
-                </li>
-            </ul>
-            <!-- end /.titlebtm -->
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                می باشد.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product_data">
-            <div class="tags tags--round">
-                <ul>
-                    <li>
-                        <a href="#">وب سایت </a>
-                    </li>
-                    <li>
-                        <a href="#">افزونه </a>
-                    </li>
-                    <li>
-                        <a href="#">صفحه intro</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- end /.tags -->
-            <div class="product-purchase featured--product-purchase">
-                <div class="price_love">
-                    <span>  10 تومان -  50 تو مان</span>
-                    <p>
-                        <span class="lnr lnr-heart"></span> 90</p>
-                </div>
-                <div class="sell">
-                    <p>
-                        <span class="lnr lnr-cart"></span>
-                        <span>16</span>
-                    </p>
-                </div>
-
-                <div class="rating product--rating">
-                    <ul>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- end /.product-purchase -->
-        </div>
-    </div>
-    <!-- end /.featured__product-description -->
-</div>
-<!--end /.featured__single-slider-->
-
-<div class="featured__single-slider">
-    <div class="featured__preview-img">
-        <img src="/images/new/featprod.jpg" alt="Featured products">
-        <div class="prod_btn">
-            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-            <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-        </div>
-    </div>
-    <!-- end /.featured__preview-img -->
-
-    <div class="featured__product-description">
-        <div class="product-desc desc--featured">
-            <a href="single-product.html" class="product_title">
-                <h4>بازار دیجیتال</h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا</a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span> ورد پرس </a>
-                </li>
-            </ul>
-            <!-- end /.titlebtm -->
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                می باشد.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product_data">
-            <div class="tags tags--round">
-                <ul>
-                    <li>
-                        <a href="#">وب سایت </a>
-                    </li>
-                    <li>
-                        <a href="#">افزونه </a>
-                    </li>
-                    <li>
-                        <a href="#">صفحه intro</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- end /.tags -->
-            <div class="product-purchase featured--product-purchase">
-                <div class="price_love">
-                    <span>  10 تومان -  50 تو مان</span>
-                    <p>
-                        <span class="lnr lnr-heart"></span> 90</p>
-                </div>
-                <div class="sell">
-                    <p>
-                        <span class="lnr lnr-cart"></span>
-                        <span>16</span>
-                    </p>
-                </div>
-
-                <div class="rating product--rating">
-                    <ul>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- end /.product-purchase -->
-        </div>
-    </div>
-    <!-- end /.featured__product-description -->
-</div>
-<!--end /.featured__single-slider-->
-
-<div class="featured__single-slider">
-    <div class="featured__preview-img">
-        <img src="/images/new/featprod.jpg" alt="Featured products">
-        <div class="prod_btn">
-            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-            <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-        </div>
-    </div>
-    <!-- end /.featured__preview-img -->
-
-    <div class="featured__product-description">
-        <div class="product-desc desc--featured">
-            <a href="single-product.html" class="product_title">
-                <h4>بازار دیجیتال</h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا</a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span> ورد پرس </a>
-                </li>
-            </ul>
-            <!-- end /.titlebtm -->
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
-                برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                می باشد.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product_data">
-            <div class="tags tags--round">
-                <ul>
-                    <li>
-                        <a href="#">وب سایت </a>
-                    </li>
-                    <li>
-                        <a href="#">افزونه </a>
-                    </li>
-                    <li>
-                        <a href="#">صفحه intro</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- end /.tags -->
-            <div class="product-purchase featured--product-purchase">
-                <div class="price_love">
-                    <span>  10 تومان -  50 تو مان</span>
-                    <p>
-                        <span class="lnr lnr-heart"></span> 90</p>
-                </div>
-                <div class="sell">
-                    <p>
-                        <span class="lnr lnr-cart"></span>
-                        <span>16</span>
-                    </p>
-                </div>
-
-                <div class="rating product--rating">
-                    <ul>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                            <span class="fa fa-star"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- end /.product-purchase -->
-        </div>
-    </div>
-    <!-- end /.featured__product-description -->
-</div>
-<!--end /.featured__single-slider-->
-</div>
-</div>
-</div>
-<!-- end /.featured__preview-img -->
-</div>
-<!-- end /.featured-product-slider -->
-</section>
-<!--================================
-END FEATURED PRODUCT AREA
-=================================-->
 
 
 <!--================================
@@ -636,379 +234,73 @@ START PRODUCTS AREA
 
 <!-- start .row -->
 <div class="row">
-<!-- start .col-md-4 -->
-<div class="col-lg-4 col-md-6">
-    <!-- start .single-product -->
-    <div class="product product--card">
+    @foreach (var events in ActiveEvent)
+    {
 
-        <div class="product__thumbnail">
-            <img src="/images/new/p1.jpg" alt="Product Image">
-            <div class="prod_btn">
-                <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-            </div>
-            <!-- end /.prod_btn -->
-        </div>
-        <!-- end /.product__thumbnail -->
+        <!-- start .col-md-4 -->
+        <div class="col-lg-4 col-md-6">
+            <!-- start .single-product -->
+            <div class="product product--card">
 
-        <div class="product-desc">
-            <a href="single-product.html" class="product_title">
-                <h4>قالب فروشگاهی </h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth.jpg" alt="author image">
+                <div class="product__thumbnail">
+                    <img src="/images/new/p1.jpg" alt="Product Image">
+                    <div class="prod_btn">
+                        <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
+                        <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
+                    </div>
+                    <!-- end /.prod_btn -->
+                </div>
+                <!-- end /.product__thumbnail -->
+
+                <div class="product-desc">
+                    <a href="single-product.html" class="product_title">
+                        <h4>@events.Title </h4>
+                    </a>
+                    <ul class="titlebtm">
+                        <li>
+                            <img class="auth-img" src="/images/auth.jpg" alt="author image">
+                            <p>
+                                <a href="#">دامن دریا </a>
+                            </p>
+                        </li>
+                        <li class="product_cat">
+                            <a href="#">
+                                <span class="lnr lnr-book"></span>افزونه </a>
+                        </li>
+                    </ul>
+
                     <p>
-                        <a href="#">دامن دریا </a>
+                        @if (events.Description.Length > 30)
+                        {
+                            events.Description = events.Description.Substring(0, 100) + "...";
+                        }
+                        @events.Description
                     </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span>افزونه </a>
-                </li>
-            </ul>
+                </div>
+                <!-- end /.product-desc -->
 
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                است.</p>
+                <div class="product-purchase">
+                    <div class="price_love">
+                        <span>
+                            @(events.Price == 0 ? "رایگان" : events.Price + "تومان")
+                        </span>
+                        <p>
+                            <span class="lnr lnr-eye"></span> @events.Seen</p>
+                    </div>
+                    <div class="sell">
+                        <p>
+                            <span class="lnr lnr-user"></span>
+                            <span>@events.NumOfParticipants</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- end /.product-purchase -->
+            </div>
+            <!-- end /.single-product -->
         </div>
-        <!-- end /.product-desc -->
+        <!-- end /.col-md-4 -->
+    }
 
-        <div class="product-purchase">
-            <div class="price_love">
-                <span>10 تومان - 50 تومان</span>
-                <p>
-                    <span class="lnr lnr-heart"></span> 90</p>
-            </div>
-            <div class="sell">
-                <p>
-                    <span class="lnr lnr-cart"></span>
-                    <span>16</span>
-                </p>
-            </div>
-        </div>
-        <!-- end /.product-purchase -->
-    </div>
-    <!-- end /.single-product -->
-</div>
-<!-- end /.col-md-4 -->
-
-<!-- start .col-md-4 -->
-<div class="col-lg-4 col-md-6">
-    <!-- start .single-product -->
-    <div class="product product--card">
-
-        <div class="product__thumbnail">
-            <img src="/images/new/p2.jpg" alt="Product Image">
-            <div class="prod_btn">
-                <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-            </div>
-            <!-- end /.prod_btn -->
-        </div>
-        <!-- end /.product__thumbnail -->
-
-        <div class="product-desc">
-            <a href="single-product.html" class="product_title">
-                <h4>قالب psd </h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth2.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span>افزونه </a>
-                </li>
-            </ul>
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                است.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product-purchase">
-            <div class="price_love">
-                <span>10 تومان</span>
-                <p>
-                    <span class="lnr lnr-heart"></span> 48</p>
-            </div>
-            <div class="sell">
-                <p>
-                    <span class="lnr lnr-cart"></span>
-                    <span>50</span>
-                </p>
-            </div>
-        </div>
-        <!-- end /.product-purchase -->
-    </div>
-    <!-- end /.single-product -->
-</div>
-<!-- end /.col-md-4 -->
-
-<!-- start .col-md-4 -->
-<div class="col-lg-4 col-md-6">
-    <!-- start .single-product -->
-    <div class="product product--card">
-
-        <div class="product__thumbnail">
-            <img src="/images/new/p3.jpg" alt="Product Image">
-            <div class="prod_btn">
-                <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-            </div>
-            <!-- end /.prod_btn -->
-        </div>
-        <!-- end /.product__thumbnail -->
-
-        <div class="product-desc">
-            <a href="single-product.html" class="product_title">
-                <h4>قالب چند فروشندگی ورد پرسs</h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth3.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span>افزونه </a>
-                </li>
-            </ul>
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                است.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product-purchase">
-            <div class="price_love">
-                <span>رایگان </span>
-                <p>
-                    <span class="lnr lnr-heart"></span> 24</p>
-            </div>
-            <div class="rating product--rating">
-                <ul>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="sell">
-                <p>
-                    <span class="lnr lnr-cart"></span>
-                    <span>27</span>
-                </p>
-            </div>
-        </div>
-        <!-- end /.product-purchase -->
-    </div>
-    <!-- end /.single-product -->
-</div>
-<!-- end /.col-md-4 -->
-
-<!-- start .col-md-4 -->
-<div class="col-lg-4 col-md-6">
-    <!-- start .single-product -->
-    <div class="product product--card">
-
-        <div class="product__thumbnail">
-            <img src="/images/new/p4.jpg" alt="Product Image">
-            <div class="prod_btn">
-                <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-            </div>
-            <!-- end /.prod_btn -->
-        </div>
-        <!-- end /.product__thumbnail -->
-
-        <div class="product-desc">
-            <a href="single-product.html" class="product_title">
-                <h4>اسکریپ دریا </h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/new/auth.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span>افزونه </a>
-                </li>
-            </ul>
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                است.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product-purchase">
-            <div class="price_love">
-                <span>10 تومان - 50 تومان</span>
-                <p>
-                    <span class="lnr lnr-heart"></span> 90</p>
-            </div>
-            <div class="sell">
-                <p>
-                    <span class="lnr lnr-cart"></span>
-                    <span>16</span>
-                </p>
-            </div>
-        </div>
-        <!-- end /.product-purchase -->
-    </div>
-    <!-- end /.single-product -->
-</div>
-<!-- end /.col-md-4 -->
-
-<!-- start .col-md-4 -->
-<div class="col-lg-4 col-md-6">
-    <!-- start .single-product -->
-    <div class="product product--card">
-
-        <div class="product__thumbnail">
-            <img src="/images/new/p5.jpg" alt="Product Image">
-            <div class="prod_btn">
-                <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-            </div>
-            <!-- end /.prod_btn -->
-        </div>
-        <!-- end /.product__thumbnail -->
-
-        <div class="product-desc">
-            <a href="single-product.html" class="product_title">
-                <h4>قالب psd </h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/new/auth2.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span>افزونه </a>
-                </li>
-            </ul>
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                است.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product-purchase">
-            <div class="price_love">
-                <span>10 تومان</span>
-                <p>
-                    <span class="lnr lnr-heart"></span> 48</p>
-            </div>
-            <div class="sell">
-                <p>
-                    <span class="lnr lnr-cart"></span>
-                    <span>50</span>
-                </p>
-            </div>
-        </div>
-        <!-- end /.product-purchase -->
-    </div>
-    <!-- end /.single-product -->
-</div>
-<!-- end /.col-md-4 -->
-
-<!-- start .col-md-4 -->
-<div class="col-lg-4 col-md-6">
-    <!-- start .single-product -->
-    <div class="product product--card">
-
-        <div class="product__thumbnail">
-            <img src="/images/new/p6.jpg" alt="Product Image">
-            <div class="prod_btn">
-                <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
-            </div>
-            <!-- end /.prod_btn -->
-        </div>
-        <!-- end /.product__thumbnail -->
-
-        <div class="product-desc">
-            <a href="single-product.html" class="product_title">
-                <h4>قالب چند فروشندگی ورد پرس</h4>
-            </a>
-            <ul class="titlebtm">
-                <li>
-                    <img class="auth-img" src="/images/auth3.jpg" alt="author image">
-                    <p>
-                        <a href="#">دامن دریا </a>
-                    </p>
-                </li>
-                <li class="product_cat">
-                    <a href="#">
-                        <span class="lnr lnr-book"></span>ورد پرس </a>
-                </li>
-            </ul>
-
-            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                است.</p>
-        </div>
-        <!-- end /.product-desc -->
-
-        <div class="product-purchase">
-            <div class="price_love">
-                <span>رایگان </span>
-                <p>
-                    <span class="lnr lnr-heart"></span> 24</p>
-            </div>
-            <div class="rating product--rating">
-                <ul>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star"></span>
-                    </li>
-                    <li>
-                        <span class="fa fa-star-half-o"></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="sell">
-                <p>
-                    <span class="lnr lnr-cart"></span>
-                    <span>27</span>
-                </p>
-            </div>
-        </div>
-        <!-- end /.product-purchase -->
-    </div>
-    <!-- end /.single-product -->
-</div>
-<!-- end /.col-md-4 -->
 </div>
 <!-- end /.row -->
 

@@ -29,6 +29,10 @@ namespace codeKade.DataLayer.Entities.Event
         [Display(Name = "بازدید")]
         public int Seen { get; set; }
 
+        [Display(Name = "قیمت")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        public int Price { get; set; }
+
         [Display(Name = "فعال / غیرفعال")]
         public bool IsActive { get; set; }
 
