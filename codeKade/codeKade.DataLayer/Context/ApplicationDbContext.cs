@@ -1,4 +1,5 @@
 ﻿using codeKade.DataLayer.Entities.Account;
+using codeKade.DataLayer.Entities.Event;
 using Microsoft.EntityFrameworkCore;
 
 namespace codeKade.DataLayer.Context
@@ -18,6 +19,12 @@ namespace codeKade.DataLayer.Context
         #region User
 
         public DbSet<User> Users { get; set; }
+
+        #endregion
+
+        #region Event
+
+        public DbSet<Event> Events { get; set; }
 
         #endregion
     }
