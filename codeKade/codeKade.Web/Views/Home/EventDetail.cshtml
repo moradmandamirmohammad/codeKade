@@ -1,8 +1,10 @@
 ﻿@using codeKade.Application.PathExtentions
+@using codeKade.DataLayer.Entities.Comment
 @using PersianDate.Standard
 @model codeKade.DataLayer.Entities.Event.Event
 @{
     ViewData["Title"] = "مشاهده رویداد" + Model.Title;
+    List<Comment> Comments = ViewBag.Comments as List<Comment>;
 }
 <!--================================
     START BREADCRUMB AREA
@@ -64,12 +66,15 @@
                                 <a href="#product-details" class="active" aria-controls="product-details" role="tab" data-toggle="tab">جزئیات</a>
                             </li>
                             <li>
-                                <a href="#product-comment" aria-controls="product-comment" role="tab" data-toggle="tab">نظرات </a>
+                                <a href="#product-comment" aria-controls="product-comment" role="tab" data-toggle="tab">
+                                    نظرات
+                                    <span>(@Comments.Count)</span>
+                                </a>
                             </li>
                             <li>
                                 <a href="#product-review" aria-controls="product-review" role="tab" data-toggle="tab">
-                                    نظرات
-                                    <span>(35)</span>
+                                    افزودن نظر
+                                    
                                 </a>
                             </li>
                             <li>
@@ -96,200 +101,77 @@
                         <div class="fade tab-pane product-tab" id="product-comment">
                             <div class="thread">
                                 <ul class="media-list thread-list">
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    <div class="media-heading">
-                                                        <a href="author.html">
-                                                            <h4>علی</h4>
-                                                        </a>
-                                                        <span>9 ساعت پیش </span>
-                                                    </div>
-                                                    <span class="comment-tag buyer">خریدار</span>
-                                                    <a href="#" class="reply-link">پاسخ </a>
+                                    @foreach (var comment in Comments.Where(c=>c.ParentId == null))
+                                    {
+                                        <li class="single-thread">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img class="media-object" src="@(comment.User.Avatar != null ? PathTools.UserImagePath + comment.User.Avatar : PathTools.DefaultUserImage)" alt="Commentator Avatar">
+                                                    </a>
                                                 </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.  </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- nested comment markup -->
-                                        <ul class="children">
-                                            <li class="single-thread depth-2">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
+                                                <div class="media-body">
+                                                    <div>
                                                         <div class="media-heading">
-                                                            <h4>رضا</h4>
-                                                            <span>6 ساعت پیش</span>
+                                                            <a href="author.html">
+                                                                <h4>@(comment.User.FirstName)</h4>
+                                                            </a>
+                                                            <span>@comment.CreateDate.ToFa("f") </span>
                                                         </div>
-                                                        <span class="comment-tag author">طراح</span>
-                                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.  </p>
+                                                        <span class="comment-tag buyer">خریدار</span>
+                                                        <a href="#" class="reply-link">پاسخ </a>
                                                     </div>
+                                                    <p>@comment.Text </p>
                                                 </div>
+                                            </div>
+                                            
+                                            @if (Comments.Any(c => c.ParentId == comment.ID))
+                                            {
 
-                                            </li>
-                                            <li class="single-thread depth-2">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="media-heading">
-                                                            <h4>رضا</h4>
-                                                            <span>6 ساعت پیش</span>
-                                                        </div>
-                                                        <span class="comment-tag author">طراح</span>
-                                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.  </p>
-                                                    </div>
+                                                <!-- nested comment markup -->
+                                                <ul class="children">
+                                                    @foreach (var child in Comments.Where(c => c.ParentId == comment.ID))
+                                                    {
+                                                        <li class="single-thread depth-2">
+                                                            <div class="media">
+                                                                <div class="media-left">
+                                                                    <a href="#">
+                                                                        <img class="media-object" src="@(child.User.Avatar != null ? PathTools.UserImagePath + child.User.Avatar : PathTools.DefaultUserImage)" alt="Commentator Avatar">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div class="media-heading">
+                                                                        <h4>@child.User.FirstName</h4>
+                                                                        <span>@child.CreateDate.ToFa("f")</span>
+                                                                    </div>
+                                                                    <span class="comment-tag author">طراح</span>
+                                                                    <p>@child.Text</p>
+                                                                </div>
+                                                            </div>
+
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            }
+                                            <!-- comment reply -->
+                                            <div class="media depth-2 reply-comment">
+                                                <div class="media-left">
+                                                    <a href="#">
+                                                        <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
+                                                    </a>
                                                 </div>
-
-                                            </li>
-
-                                        </ul>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="Write your comment..."></textarea>
-                                                    <button class="btn btn--md btn--round">Post Comment</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m3.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    <div class="media-heading">
-                                                        <a href="author.html">
-                                                            <h4>تقی</h4>
-                                                        </a>
-                                                        <span>5 ساعت پیش </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
+                                                <div class="media-body">
+                                                    <form action="#" class="comment-reply-form">
+                                                        <textarea class="bla" name="reply-comment" placeholder="Write your comment..."></textarea>
+                                                        <button class="btn btn--md btn--round">Post Comment</button>
+                                                    </form>
                                                 </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
                                             </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea name="reply-comment" placeholder="نظر خود را بنویسید "></textarea>
-                                                    <button class="btn btn--sm btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m3.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    <div class="media-heading">
-                                                        <a href="author.html">
-                                                            <h4>تقی</h4>
-                                                        </a>
-                                                        <span>5 ساعت پیش </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea name="reply-comment" placeholder="نظر خود را بنویسید "></textarea>
-                                                    <button class="btn btn--sm btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m3.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    <div class="media-heading">
-                                                        <a href="author.html">
-                                                            <h4>تقی</h4>
-                                                        </a>
-                                                        <span>5 ساعت پیش </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea name="reply-comment" placeholder="نظر خود را بنویسید "></textarea>
-                                                    <button class="btn btn--sm btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
+                                            <!-- comment reply -->
+                                        </li>
+                                        <!-- end single comment thread /.comment-->
+                                    }
 
 
                                 </ul>

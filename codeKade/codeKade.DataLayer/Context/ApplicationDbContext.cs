@@ -1,4 +1,5 @@
 ﻿using codeKade.DataLayer.Entities.Account;
+using codeKade.DataLayer.Entities.Comment;
 using codeKade.DataLayer.Entities.Event;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,12 @@ namespace codeKade.DataLayer.Context
         #region Event
 
         public DbSet<Event> Events { get; set; }
+
+        #endregion
+
+        #region Comment
+
+        public DbSet<Comment> Comments { get; set; }
 
         #endregion
     }

@@ -31,6 +31,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 builder.Services.AddScoped<IViewRenderService, ViewRenderService>();
 builder.Services.AddScoped<IEventService, EventService>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 
 #endregion
 
