@@ -18,11 +18,10 @@ namespace codeKade.Web.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult Test()
+        public async Task<IActionResult> EventDetail(long id)
         {
-            return Redirect("/");
+            var single_event = await _eventService.GetSingleEvent(id);
+            return View(single_event);
         }
-
     }
 }

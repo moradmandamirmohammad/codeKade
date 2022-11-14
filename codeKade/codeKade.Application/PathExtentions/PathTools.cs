@@ -14,9 +14,7 @@ namespace codeKade.Application.PathExtentions
         public static string UserImagePath = "/Upload/Images/Users/";
         public static string UserImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Products/");
 
-
-        public static string ProductThumbImagePath = "/Images/Products/thumb/";
-        public static string ProductThumbImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Products/thumb/");
+        public static string EventImagePath = "/Upload/Images/Event/";
 
 
         public static string DefaultUserImage = "/Upload/Images/usr_avatar.png";

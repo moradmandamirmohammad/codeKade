@@ -26,6 +26,9 @@ namespace codeKade.DataLayer.Entities.Event
         [Display(Name = "تعداد شرکت کنندگان")]
         public int NumOfParticipants { get; set; }
 
+        [Display(Name = "روز برگزاری")]
+        public DateTime StartDate { get; set; }
+
         [Display(Name = "بازدید")]
         public int Seen { get; set; }
 

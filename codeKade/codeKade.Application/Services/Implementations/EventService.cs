@@ -44,5 +44,10 @@ namespace codeKade.Application.Services.Implementations
         {
             return await _eventRepository.GetEntityQuery().Take(6).ToListAsync();
         }
+
+        public async Task<Event> GetSingleEvent(long id)
+        {
+            return await _eventRepository.GetByID(id);
+        }
     }
 }

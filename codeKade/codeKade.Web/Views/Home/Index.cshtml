@@ -1,4 +1,5 @@
 ﻿@using codeKade.DataLayer.Entities.Event
+@using codeKade.Application.PathExtentions
 @{
     ViewData["Title"] = "صفحه اصلی";
     List<Event> ActiveEvent = ViewBag.ActiveEvents as List<Event>;
@@ -243,10 +244,10 @@ START PRODUCTS AREA
             <div class="product product--card">
 
                 <div class="product__thumbnail">
-                    <img src="/images/new/p1.jpg" alt="Product Image">
+                    <img src="@(events.ImageName !=null ? PathTools.EventImagePath + events.ImageName : PathTools.DefaultUserImage)" alt="Product Image">
                     <div class="prod_btn">
-                        <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
-                        <a href="single-product.html" class="transparent btn--sm btn--round">نمایش </a>
+                        <a asp-action="EventDetail" asp-route-id="@events.ID" class="transparent btn--sm btn--round">اطلاعات بیشتر</a>
+                        <a asp-action="EventDetail" asp-route-id="@events.ID" class="transparent btn--sm btn--round">نمایش </a>
                     </div>
                     <!-- end /.prod_btn -->
                 </div>

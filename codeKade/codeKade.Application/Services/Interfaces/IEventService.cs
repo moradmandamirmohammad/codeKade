@@ -9,4 +9,6 @@ public interface IEventService : IAsyncDisposable
     Task<Event> GetActiveEvent();
 
     Task<List<Event>> GetNewEvents();
+
+    Task<Event> GetSingleEvent(long id);
 }
