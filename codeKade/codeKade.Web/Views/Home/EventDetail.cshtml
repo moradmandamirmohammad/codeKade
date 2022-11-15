@@ -71,18 +71,11 @@
                                     <span>(@Comments.Count)</span>
                                 </a>
                             </li>
+                            
                             <li>
-                                <a href="#product-review" aria-controls="product-review" role="tab" data-toggle="tab">
-                                    افزودن نظر
-                                    
-                                </a>
+                                <a href="#product-support" aria-controls="product-support" role="tab" data-toggle="tab">افزودن نظر</a>
                             </li>
-                            <li>
-                                <a href="#product-support" aria-controls="product-support" role="tab" data-toggle="tab">پشتیبانی</a>
-                            </li>
-                            <li>
-                                <a href="#product-faq" aria-controls="product-faq" role="tab" data-toggle="tab">راهنما </a>
-                            </li>
+                          
                         </ul>
                     </div>
                     <!-- end /.item-navigation -->
@@ -119,7 +112,7 @@
                                                             <span>@comment.CreateDate.ToFa("f") </span>
                                                         </div>
                                                         <span class="comment-tag buyer">خریدار</span>
-                                                        <a href="#" class="reply-link">پاسخ </a>
+                                                        <a onclick="FillAnswerBox(@comment.ID)" href="#product-support" aria-controls="product-support" role="tab" data-toggle="tab" class="reply-link">پاسخ </a>
                                                     </div>
                                                     <p>@comment.Text </p>
                                                 </div>
@@ -154,21 +147,7 @@
 
                                                 </ul>
                                             }
-                                            <!-- comment reply -->
-                                            <div class="media depth-2 reply-comment">
-                                                <div class="media-left">
-                                                    <a href="#">
-                                                        <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                    </a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <form action="#" class="comment-reply-form">
-                                                        <textarea class="bla" name="reply-comment" placeholder="Write your comment..."></textarea>
-                                                        <button class="btn btn--md btn--round">Post Comment</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <!-- comment reply -->
+                                            
                                         </li>
                                         <!-- end single comment thread /.comment-->
                                     }
@@ -177,595 +156,40 @@
                                 </ul>
                                 <!-- end /.media-list -->
 
-                                <div class="pagination-area pagination-area2">
-                                    <nav class="navigation pagination" role="navigation">
-                                        <div class="nav-links">
-                                            <a class="page-numbers current" href="#">1</a>
-                                            <a class="page-numbers" href="#">2</a>
-                                            <a class="page-numbers" href="#">3</a>
-                                            <a class="prev page-numbers" href="#">
-                                                <span class="lnr lnr-arrow-left"></span>
-                                            </a>
-                                        </div>
-                                    </nav>
-                                </div>
-                                <!-- end /.comment pagination area -->
-
-                                <div class="comment-form-area">
-                                    <h4> پیام بگذارید</h4>
-                                    <!-- comment reply -->
-                                    <div class="media comment-form">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img class="media-object" src="/images/new/m7.png" alt="Commentator Avatar">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <form action="#" class="comment-reply-form">
-                                                <textarea name="reply-comment" placeholder="نظر خود را بنویسید ..."></textarea>
-                                                <button class="btn btn--sm btn--round">ارسال نظر </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- comment reply -->
-                                </div>
+                              
                                 <!-- end /.comment-form-area -->
                             </div>
                             <!-- end /.comments -->
                         </div>
                         <!-- end /.product-comment -->
 
-                        <div class="fade tab-pane product-tab" id="product-review">
-                            <div class="thread thread_review">
-                                <ul class="media-list thread-list">
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-                                        <ul class="children">
-                                            <li class="single-thread depth-2">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <div class="media-heading">
-                                                            <h4>دامن دریا </h4>
-                                                            <span>4 ساعت پیش </span>
-                                                        </div>
-                                                        <span class="comment-tag author">طراح </span>
-                                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.  </p>
-                                                    </div>
-                                                </div>
-
-                                            </li>
-                                        </ul>
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-
-
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                    <li class="single-thread">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m1.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="clearfix">
-                                                    <div class="pull-right">
-                                                        <div class="media-heading">
-                                                            <a href="author.html">
-                                                                <h4>کاربر تست </h4>
-                                                            </a>
-                                                            <span>1 ساعت پیش </span>
-                                                        </div>
-                                                        <div class="rating product--rating">
-                                                            <ul>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star"></span>
-                                                                </li>
-                                                                <li>
-                                                                    <span class="fa fa-star-half-o"></span>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <span class="review_tag">پشتیبانی </span>
-                                                    </div>
-                                                    <a href="#" class="reply-link">پاسخ </a>
-                                                </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                                            </div>
-                                        </div>
-
-                                        <!-- comment reply -->
-                                        <div class="media depth-2 reply-comment">
-                                            <div class="media-left">
-                                                <a href="#">
-                                                    <img class="media-object" src="/images/new/m2.png" alt="Commentator Avatar">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <form action="#" class="comment-reply-form">
-                                                    <textarea class="bla" name="reply-comment" placeholder="نظر خود را بنویسی "></textarea>
-                                                    <button class="btn btn--md btn--round">ارسال نظر </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- comment reply -->
-                                    </li>
-                                    <!-- end single comment thread /.comment-->
-                                </ul>
-                                <!-- end /.media-list -->
-
-                                <div class="pagination-area pagination-area2">
-                                    <nav class="navigation pagination " role="navigation">
-                                        <div class="nav-links">
-                                            <a class="page-numbers current" href="#">1</a>
-                                            <a class="page-numbers" href="#">2</a>
-                                            <a class="page-numbers" href="#">3</a>
-                                            <a class="prev page-numbers" href="#">
-                                                <span class="lnr lnr-arrow-left"></span>
-                                            </a>
-                                        </div>
-                                    </nav>
-                                </div>
-                                <!-- end /.comment pagination area -->
-                            </div>
-                            <!-- end /.comments -->
-                        </div>
-                        <!-- end /.product-comment -->
 
                         <div class="fade tab-pane product-tab" id="product-support">
                             <div class="support">
                                 <div class="support__title">
-                                    <h3>با نویسنده تماس بگیرید</h3>
+                                    <h3 id="cmt_title">افزودن نظر</h3>
                                 </div>
                                 <div class="support__form">
                                     <div class="usr-msg">
-                                        <p>
-                                            لطفا برای ارسال نظر
-                                            <a href="login.html">وارد </a>شوید.
-                                        </p>
-
-                                        <form action="#" class="پشتیبانی_form">
-                                            <div class="form-group">
-                                                <label for="subj">موضوع:</label>
-                                                <input type="text" id="subj" class="text_field" placeholder="موضوع خود را وارد کنید ">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="supmsg">متن : </label>
-                                                <textarea class="text_field" id="supmsg" name="supmsg" placeholder="متن خود را وارد کنید ..."></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn--lg btn--round">ارسال </button>
-                                        </form>
+                                        @if (!User.Identity.IsAuthenticated)
+                                        {
+                                            <p>
+                                                لطفا برای ارسال نظر
+                                                <a href="/login">وارد </a>شوید.
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <form asp-action="AddComment" method="post" class="پشتیبانی_form">
+                                                <input name="comments.EventId" value="@Model.ID" type="hidden"/>
+                                                <input name="comments.ParentId" type="hidden" id="answer"/>
+                                                <div class="form-group">
+                                                    <label for="supmsg">متن : </label>
+                                                    <textarea class="text_field" id="supmsg" name="comments.Text" placeholder="متن خود را وارد کنید ..."></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn--lg btn--round">ارسال </button>
+                                            </form>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -876,7 +300,7 @@
                                 <p>
                                     <span class="lnr lnr-bubble mcolor3"></span>نظرات
                                 </p>
-                                <span>35</span>
+                                <span>@Comments.Count</span>
                             </li>
                         </ul>
 
@@ -886,7 +310,7 @@
 
                     <div class="sidebar-card card--product-infos">
                         <div class="card-title">
-                            <h4>اطلاعات محصول</h4>
+                            <h4>اطلاعات رویداد</h4>
                         </div>
 
                         <ul class="infos">
@@ -978,238 +402,11 @@
 <!--===========================================
     END SINGLE PRODUCT DESCRIPTION AREA
 ===============================================-->
-<!--============================================
-    START MORE PRODUCT ARE
-==============================================-->
-<section class="more_product_area section--padding dir-rtl">
-    <div class="container">
-        <div class="row">
-            <!-- start col-md-12 -->
-            <div class="col-md-12">
-                <div class="section-title">
-                    <h1>
-                        محصولات بیشتر از
-                        <span class="highlighted">دامن دریا </span>
-                    </h1>
-                </div>
-            </div>
-            <!-- end /.col-md-12 -->
-            <!-- start .col-md-4 -->
-            <div class="col-lg-4 col-md-6">
-                <!-- start .single-product -->
-                <div class="product product--card product--card2">
 
-                    <div class="product__thumbnail">
-                        <img src="/images/new/p1.jpg" alt="Product Image">
-                        <div class="prod_btn">
-                            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر </a>
-                            <a href="single-product.html" class="transparent btn--sm btn--round">مشاهده </a>
-                        </div>
-                        <!-- end /.prod_btn -->
-                    </div>
-                    <!-- end /.product__thumbnail -->
-
-                    <div class="product-desc">
-                        <a href="#" class="product_title">
-                            <h4>قالب فروشگاهی حوملا </h4>
-                        </a>
-
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                    </div>
-                    <!-- end /.product-desc -->
-
-                    <ul class="titlebtm">
-                        <li class="product_cat">
-                            <a href="#">
-                                <span class="lnr lnr-book"></span>افزونه ها
-                            </a>
-                        </li>
-                        <li class="rating product--rating">
-                            <ul>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <div class="product-purchase">
-                        <div class="price_love">
-                            <span>10 تومان  - 50 تومان </span>
-                            <p>
-                                <span class="lnr lnr-heart"></span> 90
-                            </p>
-                        </div>
-                        <div class="sell">
-                            <p>
-                                <span class="lnr lnr-cart"></span>
-                                <span>16</span>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end /.product-purchase -->
-                </div>
-                <!-- end /.single-product -->
-            </div>
-            <!-- end /.col-md-4 -->
-            <!-- start .col-md-4 -->
-            <div class="col-lg-4 col-md-6">
-                <!-- start .single-product -->
-                <div class="product product--card product--card2">
-
-                    <div class="product__thumbnail">
-                        <img src="/images/new/p1.jpg" alt="Product Image">
-                        <div class="prod_btn">
-                            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر </a>
-                            <a href="single-product.html" class="transparent btn--sm btn--round">مشاهده </a>
-                        </div>
-                        <!-- end /.prod_btn -->
-                    </div>
-                    <!-- end /.product__thumbnail -->
-
-                    <div class="product-desc">
-                        <a href="#" class="product_title">
-                            <h4>قالب فروشگاهی حوملا </h4>
-                        </a>
-
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                    </div>
-                    <!-- end /.product-desc -->
-
-                    <ul class="titlebtm">
-                        <li class="product_cat">
-                            <a href="#">
-                                <span class="lnr lnr-book"></span>افزونه ها
-                            </a>
-                        </li>
-                        <li class="rating product--rating">
-                            <ul>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <div class="product-purchase">
-                        <div class="price_love">
-                            <span>10 تومان  - 50 تومان </span>
-                            <p>
-                                <span class="lnr lnr-heart"></span> 90
-                            </p>
-                        </div>
-                        <div class="sell">
-                            <p>
-                                <span class="lnr lnr-cart"></span>
-                                <span>16</span>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end /.product-purchase -->
-                </div>
-                <!-- end /.single-product -->
-            </div>
-            <!-- end /.col-md-4 -->
-            <!-- start .col-md-4 -->
-            <div class="col-lg-4 col-md-6">
-                <!-- start .single-product -->
-                <div class="product product--card product--card2">
-
-                    <div class="product__thumbnail">
-                        <img src="/images/new/p1.jpg" alt="Product Image">
-                        <div class="prod_btn">
-                            <a href="single-product.html" class="transparent btn--sm btn--round">اطلاعات بیشتر </a>
-                            <a href="single-product.html" class="transparent btn--sm btn--round">مشاهده </a>
-                        </div>
-                        <!-- end /.prod_btn -->
-                    </div>
-                    <!-- end /.product__thumbnail -->
-
-                    <div class="product-desc">
-                        <a href="#" class="product_title">
-                            <h4>قالب فروشگاهی حوملا </h4>
-                        </a>
-
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                    </div>
-                    <!-- end /.product-desc -->
-
-                    <ul class="titlebtm">
-                        <li class="product_cat">
-                            <a href="#">
-                                <span class="lnr lnr-book"></span>افزونه ها
-                            </a>
-                        </li>
-                        <li class="rating product--rating">
-                            <ul>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                                <li>
-                                    <span class="fa fa-star"></span>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <div class="product-purchase">
-                        <div class="price_love">
-                            <span>10 تومان  - 50 تومان </span>
-                            <p>
-                                <span class="lnr lnr-heart"></span> 90
-                            </p>
-                        </div>
-                        <div class="sell">
-                            <p>
-                                <span class="lnr lnr-cart"></span>
-                                <span>16</span>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- end /.product-purchase -->
-                </div>
-                <!-- end /.single-product -->
-            </div>
-            <!-- end /.col-md-4 -->
-
-        </div>
-        <!-- end /.container -->
-    </div>
-    <!-- end /.container -->
-</section>
-<!--============================================
-    END MORE PRODUCT AREA
-==============================================-->
+@section Scripts{ 
+    <script>
+        function FillAnswerBox(id) {
+            $("#answer").val(id);
+        }
+    </script>
+}

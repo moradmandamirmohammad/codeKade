@@ -31,5 +31,36 @@ namespace codeKade.Application.Services.Implementations
         {
             return await _commentRepository.GetEntityQuery().Where(c => c.EventId == eventId).Include(c=>c.User).ToListAsync();
         }
+
+        public async Task<bool> AddComment(string text, long userId, long eventId,long? parentId)
+        {
+            if (parentId != null)
+            {
+                var comment = new Comment()
+                {
+                    Text = text,
+                    UserId = userId,
+                    EventId = eventId,
+                    IsDelete = false,
+                    ParentId = parentId
+                };
+                await _commentRepository.AddEntity(comment);
+                await _commentRepository.SaveChanges();
+            }
+            else
+            {
+                var comment = new Comment()
+                {
+                    Text = text,
+                    UserId = userId,
+                    EventId = eventId,
+                    IsDelete = false,
+                };
+                await _commentRepository.AddEntity(comment);
+                await _commentRepository.SaveChanges();
+            }
+            
+            return true;
+        }
     }
 }
