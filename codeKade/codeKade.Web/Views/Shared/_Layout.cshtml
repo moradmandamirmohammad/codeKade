@@ -1,4 +1,5 @@
 ﻿@using codeKade.Application.PathExtentions
+@using System.Security.Claims
 
 <!DOCTYPE html>
 <html lang="en">
@@ -168,7 +169,7 @@ START MENU AREA
 {
     <div class="author-author__info inline has_dropdown">
         <div class="author__avatar">
-            <img src="@(TempData["user_avatar"] != null ? PathTools.UserImagePath + TempData["user_avatar"] : PathTools.DefaultUserImage)" alt="user avatar">
+            <img style="width: 50px; height: 50px;border-radius: 50%" src="@(User.FindFirstValue("Avatar") != null ? PathTools.UserImagePath + User.FindFirstValue("Avatar") : PathTools.DefaultUserImage)" alt="user avatar">
 
         </div>
         <div class="autor__info">
@@ -209,103 +210,51 @@ else
     <!-- offcanvas menu -->
     <div class="offcanvas-menu closed">
         <span class="lnr lnr-cross close_menu"></span>
-        <div class="author-author__info">
-            <div class="author__avatar v_middle">
-                <img src="/images/usr_avatar.png" alt="user avatar">
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="author-author__info">
+                <div class="author__avatar v_middle">
+                    <img style="width: 50px; height: 50px;border-radius: 50%" src="@(User.FindFirstValue("Avatar") != null ? PathTools.UserImagePath + User.FindFirstValue("Avatar") : PathTools.DefaultUserImage)" alt="user avatar">
+                </div>
+                <div class="autor__info v_middle">
+                    <p class="name">
+                        @User.Identity.Name
+                    </p>
+                </div>
             </div>
-            <div class="autor__info v_middle">
-                <p class="name">
-                    رضا رضایی
-                </p>
-                <p class="ammount">2000 تومان</p>
+            <!--end /.author-author__info-->
+
+        
+
+            <div class="dropdowns dropdown--author">
+                <ul>
+                    <li>
+                        <a href="/user">
+                            <span class="lnr lnr-user"></span>پروفایل </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <span class="lnr lnr-exit"></span>خروج </a>
+                    </li>
+                </ul>
             </div>
-        </div>
-        <!--end /.author-author__info-->
-
-        <div class="author__notification_area">
-            <ul>
-                <li>
-                    <a href="notification.html">
-                        <div class="icon_wrap">
-                            <span class="lnr lnr-alarm"></span>
-                            <span class="notification_count noti">25</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="message.html">
-                        <div class="icon_wrap">
-                            <span class="lnr lnr-envelope"></span>
-                            <span class="notification_count msg">6</span>
-                        </div>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="cart.html">
-                        <div class="icon_wrap">
-                            <span class="lnr lnr-cart"></span>
-                            <span class="notification_count purch">2</span>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <!--start .author__notification_area -->
-
-        <div class="dropdowns dropdown--author">
-            <ul>
-                <li>
-                    <a href="author.html">
-                        <span class="lnr lnr-user"></span>پروفایل </a>
-                </li>
-                <li>
-                    <a href="dashboard.html">
-                        <span class="lnr lnr-home"></span>داشبورد</a>
-                </li>
-                <li>
-                    <a href="dashboard-setting.html">
-                        <span class="lnr lnr-cog"></span> تنظیمات</a>
-                </li>
-                <li>
-                    <a href="cart.html">
-                        <span class="lnr lnr-cart"></span>خرید ها</a>
-                </li>
-                <li>
-                    <a href="favourites.html">
-                        <span class="lnr lnr-heart"></span> علاقه مندی ها </a>
-                </li>
-                <li>
-                    <a href="dashboard-add-credit.html">
-                        <span class="lnr lnr-dice"></span>کارت تخفیف</a>
-                </li>
-                <li>
-                    <a href="dashboard-statement.html">
-                        <span class="lnr lnr-chart-bars"></span>بیانیه فروش</a>
-                </li>
-                <li>
-                    <a href="dashboard-upload.html">
-                        <span class="lnr lnr-upload"></span>آپلود ایتم </a>
-                </li>
-                <li>
-                    <a href="dashboard-manage-item.html">
-                        <span class="lnr lnr-book"></span>مدیریت آیتم ها</a>
-                </li>
-                <li>
-                    <a href="dashboard-withdrawal.html">
-                        <span class="lnr lnr-briefcase"></span>برداشت ها </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="lnr lnr-exit"></span>خروج </a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="text-center">
-            <a href="signup.html" class="author-area__seller-btn inline">تبدیل به فروشنده </a>
-        </div>
+        }
+        else
+        {
+            <div class="dropdowns dropdown--author">
+                <ul>
+                    <li>
+                        <a href="/login">
+                            <span class="lnr lnr-user"></span>ورود به حساب </a>
+                    </li>
+                    <li>
+                        <a href="/register">
+                            <span class="lnr lnr-exit"></span>ساخت حساب </a>
+                    </li>
+                </ul>
+            </div>
+        }
     </div>
 </div>
 <!-- end /.mobile_content -->
