@@ -12,5 +12,7 @@ namespace codeKade.Application.Services.Interfaces
         Task<User> GetEntityByEmail(string email);
 
         Task<User> GetById(long id);
+
+        Task<bool> EditUser(EditProfileDTO edit);
     }
 }

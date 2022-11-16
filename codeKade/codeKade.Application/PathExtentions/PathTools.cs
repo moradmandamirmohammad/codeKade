@@ -12,7 +12,7 @@ namespace codeKade.Application.PathExtentions
         #region Products
 
         public static string UserImagePath = "/Upload/Images/Users/";
-        public static string UserImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Products/");
+        public static string UserImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Images/Users/");
 
         public static string EventImagePath = "/Upload/Images/Event/";
 

@@ -1,8 +1,10 @@
-﻿using codeKade.Application.Services.Interfaces;
+﻿using codeKade.Application.PathExtentions;
+using codeKade.Application.Services.Interfaces;
 using codeKade.DataLayer.DTOs.Account;
 using codeKade.DataLayer.Entities.Account;
 using codeKade.DataLayer.Repository.Interfaces;
 using codeKade.Application.Security;
+using LightElectric.Application.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace codeKade.Application.Services.Implementations
@@ -36,6 +38,26 @@ namespace codeKade.Application.Services.Implementations
         public async Task<User> GetById(long id)
         {
             return await _userRepository.GetByID(id);
+        }
+
+        public async Task<bool> EditUser(EditProfileDTO edit)
+        {
+            var user = await GetById(edit.Id);
+            user.FirstName = edit.FirstName;
+            user.LastName = edit.LastName;
+            user.Mobile = edit.Mobile;
+            user.Address = edit.Address;
+
+
+            if (edit.AvatarImage != null && edit.AvatarImage.IsImage())
+            {
+                var UserAvatarName = Guid.NewGuid().ToString("N") + Path.GetExtension(edit.AvatarImage.FileName);
+                edit.AvatarImage.AddImageToServer(UserAvatarName, PathTools.UserImageUpload, 150, 100, null, user.Avatar);
+                user.Avatar = UserAvatarName;
+            }
+            _userRepository.EditEntity(user);
+            await _userRepository.SaveChanges();
+            return true;
         }
 
         public async Task<RegisterUserResult> Register(RegisterUserDTO register)

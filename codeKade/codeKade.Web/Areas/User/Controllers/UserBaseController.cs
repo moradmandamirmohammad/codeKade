@@ -8,6 +8,10 @@ namespace codeKade.Web.Areas.User.Controllers
     [Route("user")]
     public class UserBaseController : Controller
     {
+        protected string ErrorMessage = "ErrorMessage";
+        protected string SuccessMessage = "SuccessMessage";
+        protected string InfoMessage = "InfoMessage";
+        protected string WarningMessage = "WarningMessage";
     }
 
 }
