@@ -19,14 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\User\Controllers\" />
-    <Folder Include="Areas\User\Data\" />
-    <Folder Include="Areas\User\Models\" />
-    <Folder Include="Areas\User\Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\css\date_plugin\css\fontawesome\.gitignore" />
     <None Include="wwwroot\css\date_plugin\css\fontawesome\.npmignore" />
     <None Include="wwwroot\css\date_plugin\css\fontawesome\css\font-awesome.css.map" />

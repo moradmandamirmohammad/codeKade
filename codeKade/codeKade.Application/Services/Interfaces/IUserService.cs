@@ -10,5 +10,7 @@ namespace codeKade.Application.Services.Interfaces
         Task<LoginUserResult> LoginUser(LoginUserDTO login);
 
         Task<User> GetEntityByEmail(string email);
+
+        Task<User> GetById(long id);
     }
 }

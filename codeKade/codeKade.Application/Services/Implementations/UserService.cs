@@ -33,6 +33,11 @@ namespace codeKade.Application.Services.Implementations
 
         }
 
+        public async Task<User> GetById(long id)
+        {
+            return await _userRepository.GetByID(id);
+        }
+
         public async Task<RegisterUserResult> Register(RegisterUserDTO register)
         {
             var IsExists = await _userRepository.GetEntityQuery().AnyAsync(s => s.Email == register.Email && s.IsActive == true);
