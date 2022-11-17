@@ -19,6 +19,7 @@ namespace codeKade.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            ViewBag.IndexComment = await _commentService.GetIndexComments();
             ViewBag.ActiveEvents = await _eventService.GetNewEvents();
             return View();
         }

@@ -1,9 +1,10 @@
 ﻿@using codeKade.DataLayer.Entities.Event
 @using codeKade.Application.PathExtentions
+@using codeKade.DataLayer.Entities.Comment
 @{
     ViewData["Title"] = "صفحه اصلی";
     List<Event> ActiveEvent = ViewBag.ActiveEvents as List<Event>;
-    
+    List<Comment> IndexComments = ViewBag.IndexComment as List<Comment>;
 }
 
 <!--================================
@@ -275,7 +276,7 @@ START PRODUCTS AREA
                         {
                             events.Description = events.Description.Substring(0, 100) + "...";
                         }
-                        @events.Description
+                        @Html.Raw(events.Description)
                     </p>
                 </div>
                 <!-- end /.product-desc -->
@@ -930,88 +931,32 @@ START TESTIMONIAL
             <!-- start .col-md-12 -->
             <div class="col-md-12">
                 <div class="testimonial-slider">
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle">
-                                <img src="/images/new/test1.jpg" alt="Testimonial Avatar">
+                    @foreach (var comment in IndexComments)
+                    {
+                        <div class="testimonial">
+                            <div class="testimonial__about">
+                                <div class="avatar v_middle">
+                                    <img src="@(comment.User.Avatar != null ? PathTools.UserImagePath + comment.User.Avatar : PathTools.DefaultUserImage)" alt="Testimonial Avatar">
+                                </div>
+                                <div class="name-designation v_middle">
+                                    <h4 class="name">@(comment.User.FirstName + " " + comment.User.LastName) </h4>
+                                    @if (comment.User.IsAdmin)
+                                    {
+                                        <span class="desig">مدیر </span>
+                                    }
+                                </div>
+                                <span class="lnr lnr-bubble quote-icon"></span>
                             </div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">کاربر تست </h4>
-                                <span class="desig">طراح محصویل </span>
+                            <div class="testimonial__text">
+                                <p> @comment.Text </p>
                             </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
                         </div>
-                        <div class="testimonial__text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
-                        </div>
-                    </div>
-                    <!-- end /.testimonial -->
-
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle">
-                                <img src="/images/new/test2.jpg" alt="Testimonial Avatar">
-                            </div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">کاربر تست </h4>
-                                <span class="desig">طراح محصویل </span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
-                        </div>
-                    </div>
-                    <!-- end /.testimonial -->
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle">
-                                <img src="/images/new/test1.jpg" alt="Testimonial Avatar">
-                            </div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">کاربر تست </h4>
-                                <span class="desig">طراح محصویل </span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
-                        </div>
-                    </div>
-                    <!-- end /.testimonial -->
-
-                    <div class="testimonial">
-                        <div class="testimonial__about">
-                            <div class="avatar v_middle">
-                                <img src="/images/new/test2.jpg" alt="Testimonial Avatar">
-                            </div>
-                            <div class="name-designation v_middle">
-                                <h4 class="name">کاربر تست </h4>
-                                <span class="desig">طراح محصویل </span>
-                            </div>
-                            <span class="lnr lnr-bubble quote-icon"></span>
-                        </div>
-                        <div class="testimonial__text">
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. </p>
-                        </div>
-                    </div>
-                    <!-- end /.testimonial -->
-
-
+                        <!-- end /.testimonial -->
+                    }
                 </div>
                 <!-- end /.testimonial_slider -->
 
-                <div class="all-testimonial">
-                    <a href="testimonial.html" class="btn btn--lg btn--round">مشاهده تمام نظرات</a>
-                </div>
+             
             </div>
             <!-- end /.col-md-12 -->
         </div>

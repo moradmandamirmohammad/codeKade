@@ -111,7 +111,10 @@
                                                             </a>
                                                             <span>@comment.CreateDate.ToFa("f") </span>
                                                         </div>
-                                                        <span class="comment-tag buyer">خریدار</span>
+                                                        @if (comment.User.IsAdmin)
+                                                        {
+                                                            <span class="comment-tag author">مدیر</span>
+                                                        }
                                                         <a onclick="FillAnswerBox(@comment.ID)" href="#product-support" aria-controls="product-support" role="tab" data-toggle="tab" class="reply-link">پاسخ </a>
                                                     </div>
                                                     <p>@comment.Text </p>
@@ -137,7 +140,10 @@
                                                                         <h4>@child.User.FirstName</h4>
                                                                         <span>@child.CreateDate.ToFa("f")</span>
                                                                     </div>
-                                                                    <span class="comment-tag author">طراح</span>
+                                                                    @if (child.User.IsAdmin)
+                                                                    {
+                                                                        <span class="comment-tag author">مدیر</span>
+                                                                    }
                                                                     <p>@child.Text</p>
                                                                 </div>
                                                             </div>

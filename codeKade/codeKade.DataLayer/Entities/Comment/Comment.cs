@@ -21,6 +21,7 @@ namespace codeKade.DataLayer.Entities.Comment
         [Required]
         [MaxLength(150, ErrorMessage = "تعداد کارکتر ها بیش از حد مجاز است")]
         public string Text { get; set; }
+        public bool ShowInIndex { get; set; }
 
         public Event.Event Event { get; set; }
 

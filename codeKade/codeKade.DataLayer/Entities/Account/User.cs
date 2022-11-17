@@ -37,6 +37,9 @@ namespace codeKade.DataLayer.Entities.Account
         [Display(Name = "فعال / غیرفعال")]
         public bool IsActive { get; set; }
 
+        [Display(Name = "نقش")]
+        public bool IsAdmin { get; set; }
+
         [Display(Name = "کد فعال")]
         public string ActiveCode { get; set; }
 

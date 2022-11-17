@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using codeKade.DataLayer.Context;
 
@@ -11,9 +12,10 @@ using codeKade.DataLayer.Context;
 namespace codeKade.DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116192235_AddIsAdmin")]
+    partial class AddIsAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,9 +112,6 @@ namespace codeKade.DataLayer.Migrations
 
                     b.Property<long?>("ParentId")
                         .HasColumnType("bigint");
-
-                    b.Property<bool>("ShowInIndex")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Text")
                         .IsRequired()

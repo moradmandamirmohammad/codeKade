@@ -46,24 +46,24 @@ public class AccountController : SiteBaseController
             ModelState.AddModelError("Password","پسورد باید بیشتر از 8 کارکتر باشد");
             return View(register);
         }
-
+        
         var res = await _userService.Register(register);
         switch (res)
         {
             case RegisterUserResult.EmailConflict:
-                ModelState.AddModelError("Eamil", "این ایمیل توسط شخص دیگری استفاده شده است");
+                TempData[ErrorMessage] = "ایمیل وارد شده تکراری میباشد";
                 return View(register);
                 break;
             case RegisterUserResult.MobileConflict:
-                ModelState.AddModelError("Mobile", "این موبایل توسط شخص دیگری استفاده شده است");
+                TempData[ErrorMessage] = "شماره موبایل وارد شده تکراری میباشد";
                 return View(register);
                 break;
             case RegisterUserResult.Success:
-                var email = register.Email;
-                var user = await _userService.GetEntityByEmail(email);
-                var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
-                EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
-                TempData[SuccessMessage] = "ایمیل فعالسازی برای شما ارسال شد";
+                //var email = register.Email;
+                //var user = await _userService.GetEntityByEmail(email);
+                //var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
+                //EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
+                TempData[SuccessMessage] = "حساب شما با موفقیت ایجاد شد";
                 return Redirect("/");
                 break;
 

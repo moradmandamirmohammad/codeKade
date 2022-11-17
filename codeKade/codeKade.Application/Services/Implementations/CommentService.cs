@@ -62,5 +62,10 @@ namespace codeKade.Application.Services.Implementations
             
             return true;
         }
+
+        public async Task<List<Comment>> GetIndexComments()
+        {
+            return await _commentRepository.GetEntityQuery().Where(c => c.ShowInIndex).Include(c=>c.User).ToListAsync();
+        }
     }
 }
