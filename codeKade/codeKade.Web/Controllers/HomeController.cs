@@ -11,16 +11,19 @@ namespace codeKade.Web.Controllers
     {
         private readonly IEventService _eventService;
         private readonly ICommentService _commentService;
+        private readonly IBlogService _blogService;
 
-        public HomeController(IEventService eventService, ICommentService commentService)
+        public HomeController(IEventService eventService, ICommentService commentService, IBlogService blogService)
         {
             _eventService = eventService;
             _commentService = commentService;
+            _blogService = blogService;
         }
         public async Task<IActionResult> Index()
         {
             ViewBag.IndexComment = await _commentService.GetIndexComments();
             ViewBag.ActiveEvents = await _eventService.GetNewEvents();
+            ViewBag.NewBlogs = await _blogService.GetNewBlogs();
             return View();
         }
 

@@ -14,6 +14,10 @@ namespace codeKade.Application.PathExtentions
         public static string UserImagePath = "/Upload/Images/Users/";
         public static string UserImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Images/Users/");
 
+        public static string BlogImagePath = "/Upload/Images/Blog/";
+        public static string DefaultBlogImage = "/Upload/Images/Blog/Default.png";
+        public static string BlogImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Images/Blog/");
+
         public static string EventImagePath = "/Upload/Images/Event/";
 
 

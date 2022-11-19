@@ -1,10 +1,13 @@
 ﻿@using codeKade.DataLayer.Entities.Event
 @using codeKade.Application.PathExtentions
+@using codeKade.DataLayer.Entities.Blog
 @using codeKade.DataLayer.Entities.Comment
+@using PersianDate.Standard
 @{
     ViewData["Title"] = "صفحه اصلی";
     List<Event> ActiveEvent = ViewBag.ActiveEvents as List<Event>;
     List<Comment> IndexComments = ViewBag.IndexComment as List<Comment>;
+    List<Blog> NewBlogs = ViewBag.NewBlogs as List<Blog>;
 }
 
 <!--================================
@@ -979,10 +982,9 @@ START LATEST NEWS
             <!-- start col-md-12 -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h1>آخرین
-                        <span class="highlighted">اخبار</span>
+                    <h1>جدید ترین
+                        <span class="highlighted">وبلاگ</span>
                     </h1>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
                 </div>
             </div>
             <!-- end /.col-md-12 -->
@@ -991,113 +993,49 @@ START LATEST NEWS
 
         <!-- start .row -->
         <div class="row">
-            <!-- start .col-md-4 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="news">
-                    <div class="news__thumbnail">
-                        <img src="/images/new/news1.png" alt="News Thumbnail">
-                    </div>
-                    <div class="news__content">
-                        <a href="#" class="news-title">
-                            <h4>روند طراحی وب در سال 2019</h4>
-                        </a>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                            است.</p>
-                    </div>
-                    <div class="news__meta">
-                        <div class="date">
-                            <span class="lnr lnr-clock"></span>
-                            <p>17 آبان 1397</p>
+            @foreach (var blog in NewBlogs)
+            {
+                <!-- start .col-md-4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="news">
+                        <div class="news__thumbnail">
+                            <img src="@(blog.ImageName != null ? PathTools.BlogImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="News Thumbnail">
                         </div>
+                        <div class="news__content">
+                            <a asp-controller="Blog" asp-action="Details" class="news-title">
+                                <h4>@blog.Title</h4>
+                            </a>
+                            <p>
+                                @if (blog.Body.Length > 100)
+                                {
+                                    blog.Body = blog.Body.Substring(0, 100);
+                                }
+                                @blog.Body
+                            </p>
+                        </div>
+                        <div class="news__meta">
+                            <div class="date">
+                                <span class="lnr lnr-clock"></span>
+                                <p>@blog.CreateDate.ToFa("B")</p>
+                            </div>
 
-                        <div class="other">
-                            <ul>
-                                <li>
-                                    <span class="lnr lnr-bubble"></span>
-                                    <span>45</span>
-                                </li>
-                                <li>
-                                    <span class="lnr lnr-eye"></span>
-                                    <span>345</span>
-                                </li>
-                            </ul>
+                            <div class="other">
+                                <ul>
+                                    <li>
+                                        <span class="lnr lnr-bubble"></span>
+                                        <span>45</span>
+                                    </li>
+                                    <li>
+                                        <span class="lnr lnr-eye"></span>
+                                        <span>@blog.Seen</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- end /.col-md-4 -->
-
-            <!-- start .col-md-4 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="news">
-                    <div class="news__thumbnail">
-                        <img src="/images/new/news2.png" alt="News Thumbnail">
-                    </div>
-                    <div class="news__content">
-                        <a href="#" class="news-title">
-                            <h4>بهترین توصیه برای شروع پروژه خود</h4>
-                        </a>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                            است.</p>
-                    </div>
-                    <div class="news__meta">
-                        <div class="date">
-                            <span class="lnr lnr-clock"></span>
-                            <p>17 آبان 1397</p>
-                        </div>
-
-                        <div class="other">
-                            <ul>
-                                <li>
-                                    <span class="lnr lnr-bubble"></span>
-                                    <span>45</span>
-                                </li>
-                                <li>
-                                    <span class="lnr lnr-eye"></span>
-                                    <span>345</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end /.col-md-4 -->
-
-            <!-- start .col-md-4 -->
-            <div class="col-lg-4 col-md-6">
-                <div class="news">
-                    <div class="news__thumbnail">
-                        <img src="/images/new/news1.png" alt="News Thumbnail">
-                    </div>
-                    <div class="news__content">
-                        <a href="#" class="news-title">
-                            <h4>10 ابزار برای طراحی قالب</h4>
-                        </a>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                            است.</p>
-                    </div>
-                    <div class="news__meta">
-                        <div class="date">
-                            <span class="lnr lnr-clock"></span>
-                            <p>17 آبان 1397</p>
-                        </div>
-
-                        <div class="other">
-                            <ul>
-                                <li>
-                                    <span class="lnr lnr-bubble"></span>
-                                    <span>45</span>
-                                </li>
-                                <li>
-                                    <span class="lnr lnr-eye"></span>
-                                    <span>345</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end /.col-md-4 -->
+                <!-- end /.col-md-4 -->
+            }
         </div>
         <!-- end /.row -->
     </div>
