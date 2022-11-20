@@ -19,6 +19,7 @@ namespace codeKade.Application.PathExtentions
         public static string BlogImageUpload = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Images/Blog/");
 
         public static string EventImagePath = "/Upload/Images/Event/";
+        public static string EventThumbImagePath = "/Upload/Images/Event/thumb/";
 
 
         public static string DefaultUserImage = "/Upload/Images/usr_avatar.png";

@@ -1,4 +1,6 @@
-﻿using System.Security.Claims;
+﻿using System.Net;
+using System.Net.Mail;
+using System.Security.Claims;
 using codeKade.Application.Senders;
 using codeKade.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -63,6 +65,9 @@ public class AccountController : SiteBaseController
                 //var user = await _userService.GetEntityByEmail(email);
                 //var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
                 //EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
+                var user = await _userService.GetEntityByEmail(register.Email);
+                var body = "https://localhost:44341/ActiveAccount/" + user.ActiveCode;
+                sendMail(register.Email, body);
                 TempData[SuccessMessage] = "حساب شما با موفقیت ایجاد شد";
                 return Redirect("/");
                 break;
@@ -133,6 +138,21 @@ public class AccountController : SiteBaseController
         }
 
         return Redirect("/");
+    }
+
+    #endregion
+
+    #region Email
+
+    public bool sendMail(string to, string code)
+    {
+        var client = new SmtpClient("smtp.mailtrap.io", 2525)
+        {
+            Credentials = new NetworkCredential("8e80c2d815c40d", "93e83c9989854e"),
+            EnableSsl = true
+        };
+        client.Send("from@example.com", to, "ActiveCode", code);
+        return true;
     }
 
     #endregion

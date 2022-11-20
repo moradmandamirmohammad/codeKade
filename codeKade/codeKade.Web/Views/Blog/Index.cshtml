@@ -1,0 +1,131 @@
+﻿@using codeKade.Application.PathExtentions
+@using PersianDate.Standard
+@model codeKade.DataLayer.DTOs.Blog.FilterBlogDTO
+@{
+    ViewData["Title"] = "بلاگ";
+}
+
+<!--================================
+        START BREADCRUMB AREA
+    =================================-->
+    <section class="breadcrumb-area dir-rtl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="page-title">@ViewData["Title"]</h1>
+                    <div class="breadcrumb">
+                        <ul>
+                            <li>
+                                <a href="index.html">خانه</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">@ViewData["Title"]</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- end /.col-md-12 -->
+            </div>
+            <!-- end /.row -->
+        </div>
+        <!-- end /.container -->
+    </section>
+    <!--================================
+        END BREADCRUMB AREA
+    =================================-->
+    <!--================================
+            START LOGIN AREA
+    =================================-->
+    <section class="blog_area section--padding2 dir-rtl">
+        <div class="container">
+            <form id="filter-form" asp-action="Index" method="get">
+                @*<label>جستجو در مطالب :</label>
+                <input type="text" asp-for="Title" class="w-25"/>*@
+                <input type="hidden" asp-for="PageID"/>
+                @*<button class="btn btn-primary p-2" type="submit">جستجو</button>*@
+            </form>
+            <div class="row" data-uk-grid>
+                @foreach (var blog in Model.Blogs)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single_blog blog--card">
+                            <figure>
+                                <img src="@(blog.ImageName != null ? PathTools.BlogImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="Blog image">
+
+                                <figcaption>
+                                    <div class="blog__content">
+                                        <a href="#" class="blog__title">
+                                            <h4>@blog.Title</h4>
+                                        </a>
+                                        <p>
+                                            @if (blog.Body.Length > 100)
+                                            {
+                                                blog.Body = blog.Body.Substring(0, 100);
+                                            }
+                                            @blog.Body
+                                        </p>
+                                    </div>
+
+                                    <div class="blog__meta">
+                                        <div class="date_time">
+                                            <span class="lnr lnr-clock"></span>
+                                            <p>
+                                                @blog.CreateDate.ToFa("B")
+                                            </p>
+                                        </div>
+                                        <div class="comment_view">
+                                            <p class="comment">
+                                                <span class="lnr lnr-bubble"></span>45</p>
+                                            <p class="view">
+                                                <span class="lnr lnr-eye"></span>@blog.Seen</p>
+                                        </div>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                        <!-- end /.single_blog -->
+                    </div>
+                    <!-- end /.col-md-4 -->
+                }
+            </div>
+            <!-- end /.row -->
+            <div class="pagination-area pagination-area2">
+                <nav class="navigation pagination " role="navigation">
+                    <div class="nav-links">
+                        @if (Model.StartPage != 1)
+                        {
+                            <a class="prev page-numbers" onclick="FillPageId(1)">
+                                <span class="lnr lnr-arrow-right"></span>
+                            </a>
+                        }
+                        @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+                        {
+                            <a class="page-numbers @(i == Model.PageID ? "current" : "")" onclick="FillPageId(@i)">@i</a>
+                        }
+                        @if (Model.EndPage != Model.PageCount)
+                        {
+                            <a class="prev page-numbers" onclick="FillPageId(@Model.PageCount)">
+                                <span class="lnr lnr-arrow-left"></span>
+                            </a>
+                        }
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- end /.container -->
+    </section>
+<!--================================
+END LOGIN AREA
+=================================-->
+
+@section Scripts
+{
+    <script>
+        function FillPageId(page) {
+            $('#PageID').val(page);
+            $('#filter-form').submit();
+        }
+    </script>
+}
+
