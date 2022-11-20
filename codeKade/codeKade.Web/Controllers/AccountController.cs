@@ -66,7 +66,7 @@ public class AccountController : SiteBaseController
                 //var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
                 //EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
                 var user = await _userService.GetEntityByEmail(register.Email);
-                var body = "برای فعالسازی وارد لینک روبرو شوید : https://localhost:44358/ActiveAccount/" + user.ActiveCode;
+                var body = "برای فعالسازی وارد لینک روبرو شوید : " + BaseURL + "ActiveAccount/" + user.ActiveCode;
                 sendMail(register.Email, body);
                 TempData[SuccessMessage] = "حساب شما با موفقیت ایجاد شد برای فعالسازی حساب ایمیل خود را چک کنید";
                 return Redirect("/");
@@ -172,5 +172,69 @@ public class AccountController : SiteBaseController
         }
         return RedirectToAction("Index", "Home");
     }
+    #endregion
+
+    #region Forgot Password
+
+    public IActionResult ForgotPassword()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ForgotPassword(ForgotPasswordDTO forgot)
+    {
+        var user = await _userService.GetEntityByEmail(forgot.EmailAddress);
+        if (user != null)
+        {
+            var body = "برای بازیابی کلمه عبور وارد لینک روبرو شوید : " + BaseURL +"ResetPassword/" + user.ActiveCode;
+            sendMail(user.Email, body);
+            TempData[SuccessMessage] = "ایمیل بازیابی برای شما ارسال شد";
+            return Redirect("/");
+        }
+
+        TempData[ErrorMessage] = "کاربری با مشخصات وارد شده پیدا نشد";
+        return View(forgot);
+    }
+
+    #endregion
+
+    #region Reset Password
+
+    [HttpGet("ResetPassword/{activeCode}")]
+    public async Task<IActionResult> ResetPassword(string activeCode)
+    {
+        if (activeCode == null)
+        {
+            TempData[ErrorMessage] = "متاسفانه مشکلی پیش آمد";
+            return Redirect("/");
+        } 
+        var user = await _userService.GetUserByActiveCode(activeCode);
+        if (user == null)
+        {
+            TempData[ErrorMessage] = "متاسفانه مشکلی پیش آمد";
+            return Redirect("/");
+        }
+        return View();
+    }
+
+    [HttpPost("ResetPassword/{activeCode}")]
+    public async Task<IActionResult> ResetPassword(string activeCode,ResetPasswordDTO reset)
+    {
+        if (ModelState.IsValid)
+        {
+            if (activeCode != null)
+            {
+                var res = await _userService.ResetPassword(activeCode, reset);
+                if (res)
+                {
+                    TempData[SuccessMessage] = "کلمه عبور شما با موفقیت تغییر یافت";
+                    return Redirect("/");
+                }
+            }
+        }
+        return View();
+    }
+
     #endregion
 }

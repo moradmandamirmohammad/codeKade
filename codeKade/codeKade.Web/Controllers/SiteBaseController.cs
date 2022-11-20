@@ -8,5 +8,7 @@ namespace codeKade.Web.Controllers
         protected string SuccessMessage = "SuccessMessage";
         protected string InfoMessage = "InfoMessage";
         protected string WarningMessage = "WarningMessage";
+
+        protected string BaseURL = "https://localhost:44358/";
     }
 }

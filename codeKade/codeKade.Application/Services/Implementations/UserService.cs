@@ -27,18 +27,40 @@ namespace codeKade.Application.Services.Implementations
             }
         }
 
+        public async Task<bool> ResetPassword(string Code, ResetPasswordDTO reset)
+        {
+            var user = await _userRepository.GetEntityQuery().SingleOrDefaultAsync(j => j.ActiveCode == Code);
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.Password = _passwordHelper.EncodePasswordMd5(reset.Password);
+            user.ActiveCode = Guid.NewGuid().ToString("N");
+            _userRepository.EditEntity(user);
+            await _userRepository.SaveChanges();
+            return true;
+        }
+
         public async Task<bool> ActiveAccount(string ActiveCode)
         {
-            var user = await _userRepository.GetEntityQuery().SingleOrDefaultAsync(s => s.ActiveCode == ActiveCode);
+            var user = await GetUserByActiveCode(ActiveCode);
             if (user != null)
             {
                 user.IsActive = true;
+                user.ActiveCode = Guid.NewGuid().ToString("N");
                 _userRepository.EditEntity(user);
                 await _userRepository.SaveChanges();
                 return true;
             }
             return false;
 
+        }
+
+        public async Task<User> GetUserByActiveCode(string ActiveCode)
+        {
+            var user = await _userRepository.GetEntityQuery().SingleOrDefaultAsync(s => s.ActiveCode == ActiveCode);
+            return user;
         }
 
         public async Task<User> GetEntityByEmail(string email)

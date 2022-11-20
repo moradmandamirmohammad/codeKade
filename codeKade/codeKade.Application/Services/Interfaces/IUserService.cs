@@ -16,5 +16,9 @@ namespace codeKade.Application.Services.Interfaces
         Task<bool> EditUser(EditProfileDTO edit);
 
         Task<bool> ActiveAccount(string ActiveCode);
+
+        Task<User> GetUserByActiveCode(string ActiveCode);
+
+        Task<bool> ResetPassword(string Code, ResetPasswordDTO reset);
     }
 }
