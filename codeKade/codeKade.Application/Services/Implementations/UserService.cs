@@ -27,6 +27,20 @@ namespace codeKade.Application.Services.Implementations
             }
         }
 
+        public async Task<bool> ActiveAccount(string ActiveCode)
+        {
+            var user = await _userRepository.GetEntityQuery().SingleOrDefaultAsync(s => s.ActiveCode == ActiveCode);
+            if (user != null)
+            {
+                user.IsActive = true;
+                _userRepository.EditEntity(user);
+                await _userRepository.SaveChanges();
+                return true;
+            }
+            return false;
+
+        }
+
         public async Task<User> GetEntityByEmail(string email)
         {
 

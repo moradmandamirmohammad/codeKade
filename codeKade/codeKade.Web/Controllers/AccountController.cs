@@ -66,9 +66,9 @@ public class AccountController : SiteBaseController
                 //var body = _viewRenderService.RenderToStringAsync("Emails/ActiveEmail", user);
                 //EmailSender.SendEmail(register.Email, "فعالسازی حساب کاربری", body);
                 var user = await _userService.GetEntityByEmail(register.Email);
-                var body = "https://localhost:44341/ActiveAccount/" + user.ActiveCode;
+                var body = "برای فعالسازی وارد لینک روبرو شوید : https://localhost:44358/ActiveAccount/" + user.ActiveCode;
                 sendMail(register.Email, body);
-                TempData[SuccessMessage] = "حساب شما با موفقیت ایجاد شد";
+                TempData[SuccessMessage] = "حساب شما با موفقیت ایجاد شد برای فعالسازی حساب ایمیل خود را چک کنید";
                 return Redirect("/");
                 break;
 
@@ -155,5 +155,22 @@ public class AccountController : SiteBaseController
         return true;
     }
 
+    #endregion
+
+    #region Active Account
+    [HttpGet("ActiveAccount/{activeCode}")]
+    public async Task<IActionResult> ActiveAccount(string activeCode)
+    {
+        if (!string.IsNullOrEmpty(activeCode))
+        {
+            var res = await _userService.ActiveAccount(activeCode);
+            if (res == true)
+            {
+                TempData[SuccessMessage] = "حساب کاربری شما با موفقیت فعال شد";
+                return Redirect("Login");
+            }
+        }
+        return RedirectToAction("Index", "Home");
+    }
     #endregion
 }

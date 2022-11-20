@@ -14,5 +14,7 @@ namespace codeKade.Application.Services.Interfaces
         Task<User> GetById(long id);
 
         Task<bool> EditUser(EditProfileDTO edit);
+
+        Task<bool> ActiveAccount(string ActiveCode);
     }
 }

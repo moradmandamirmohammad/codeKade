@@ -3,7 +3,7 @@
         closeOnClick: true,
         displayCloseButton: false,
         positionClass: 'nfc-bottom-right',
-        showDuration: 4000,
+        showDuration: 10000,
         theme: theme !== '' ? theme : 'success'
     })({
         title: title !== '' ? title : 'اعلان',
