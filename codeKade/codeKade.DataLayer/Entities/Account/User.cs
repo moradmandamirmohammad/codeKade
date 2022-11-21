@@ -51,5 +51,7 @@ namespace codeKade.DataLayer.Entities.Account
         [Display(Name = "نام عکس")]
         [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string Avatar { get; set; }
+
+        public List<Blog.Blog> Blogs { get; set; }
     }
 }

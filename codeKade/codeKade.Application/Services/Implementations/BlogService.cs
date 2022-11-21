@@ -14,10 +14,12 @@ namespace codeKade.Application.Services.Implementations
     public class BlogService : IBlogService
     {
         private readonly IGenericRepository<Blog> _blogRepository;
+        private readonly IGenericRepository<BlogCategory> _blogCategoryRepository;
 
-        public BlogService(IGenericRepository<Blog> blogRepository)
+        public BlogService(IGenericRepository<Blog> blogRepository, IGenericRepository<BlogCategory> blogCategoryRepository)
         {
             _blogRepository = blogRepository;
+            _blogCategoryRepository = blogCategoryRepository;
         }
 
         public async ValueTask DisposeAsync()
@@ -57,7 +59,25 @@ namespace codeKade.Application.Services.Implementations
 
         public async Task<Blog> GetBlogDetail(long id)
         {
-            return await _blogRepository.GetEntityQuery().Include(b=>b.BlogCategory).SingleOrDefaultAsync(b=>b.ID == id);
+            return await _blogRepository.GetEntityQuery().Include(b=>b.BlogCategory).Include(b=>b.User).SingleOrDefaultAsync(b=>b.ID == id);
+        }
+
+        public async Task<List<BlogCategory>> GetCategories()
+        {
+            return await _blogCategoryRepository.GetEntityQuery().ToListAsync();
+        }
+
+        public async Task<List<Blog>> GetMostSeenBlog()
+        {
+            return await _blogRepository.GetEntityQuery().OrderByDescending(b => b.Seen).Take(5).ToListAsync();
+        }
+
+        public async Task AddSeenToBlog(long id)
+        {
+            var blog = await _blogRepository.GetByID(id);
+            blog.Seen += 1;
+            _blogRepository.EditEntity(blog);
+            await _blogRepository.SaveChanges();
         }
     }
 }

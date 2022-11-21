@@ -1,8 +1,11 @@
 ﻿@using codeKade.Application.PathExtentions
+@using codeKade.DataLayer.Entities.Blog
 @using PersianDate.Standard
 @model codeKade.DataLayer.Entities.Blog.Blog
 @{
-    ViewData["Title"] = "مشاهده بلاگ";
+    ViewData["Title"] = "مشاهده بلاگ" + " " + Model.Title;
+    var Categories = ViewBag.Categories as List<BlogCategory>;
+    var MostSeen = ViewBag.MostSeenBlog as List<Blog>;
 }
 
 <!--================================
@@ -12,14 +15,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="page-title">صفحه پست </h1>
+                <h1 class="page-title">@ViewData["Title"] </h1>
                 <div class="breadcrumb">
                     <ul>
                         <li>
-                            <a href="index.html">خانه</a>
+                            <a href="index.html">بلاگ</a>
                         </li>
                         <li class="active">
-                            <a href="#">صفحه پست </a>
+                            <a href="#">@ViewData["Title"] </a>
                         </li>
                     </ul>
                 </div>
@@ -45,7 +48,7 @@
                 <div class="single_blog blog--default">
                     <article>
                         <figure>
-                            <img src="@(Model.ImageName != null ? PathTools.BlogImagePath + Model.ImageName : PathTools.DefaultBlogImage)" alt="Blog image">
+                            <img src="@(Model.ImageName != null ? PathTools.BlogImagePath + Model.ImageName : PathTools.DefaultBlogImage)" alt="@Model.Title">
                         </figure>
                         <div class="blog__content">
                             <a href="#" class="blog__title">
@@ -56,7 +59,7 @@
                                 <div class="author">
                                     <span class="lnr lnr-user"></span>
                                     <p>
-                                        <a href="#">دامن دریا </a>
+                                        <a href="#">@(Model.User.FirstName + " " + Model.User.LastName) </a>
                                     </p>
                                 </div>
                                 <div class="date_time">
@@ -125,11 +128,17 @@
 
                 <div class="author_info">
                     <div class="author__img">
-                        <img src="/images/new/authi.jpg" alt="Auth Image">
+                        <img src="@(Model.User.Avatar != null ? PathTools.UserImagePath + Model.User.Avatar : PathTools.DefaultUserImage)" alt="@(Model.User.FirstName + " " +Model.User.LastName)">
                     </div>
 
                     <div class="author__info">
-                        <h4>درباره نویسنه </h4>
+                        <h4>
+                             نویسنده : @(Model.User.FirstName + " " + Model.User.LastName)
+                             @if (Model.User.IsAdmin)
+                             {
+                                 <span class="btn btn-primary pl-2 pr-2">مدیر</span>
+                             }
+                        </h4>
                         <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
 
                         </p>
@@ -318,7 +327,7 @@
                                     <a href="#popular" class="active" id="popular-tab" aria-controls="popular" role="tab" data-toggle="tab" aria-selected="true">محبوب ترین ها </a>
                                 </li>
                                 <li>
-                                    <a href="#latest" id="latest-tab" aria-controls="latest" role="tab" data-toggle="tab" aria-selected="false">اخرین مقالات </a>
+                                    <a href="#latest" id="latest-tab" aria-controls="latest" role="tab" data-toggle="tab" aria-selected="false">پر بازدید ترین مقالات </a>
                                 </li>
                             </ul>
                         </div>
@@ -329,65 +338,26 @@
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active fade show" id="popular" aria-labelledby="popular-tab">
                                     <ul class="post-list">
+                                        @foreach(var blog in MostSeen){
                                         <li>
                                             <div class="thumbnail_img">
-                                                <img src="/images/new/blog_thumb1.jpg" alt="blog thumbnail">
+                                                <img src="@(blog.ImageName != null ? PathTools.BlogThumbImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="@blog.Title">
                                             </div>
                                             <div class="title_area">
-                                                <a href="#">
-                                                    <h4>5 بهترین پلاگین اعتبار سنجی فرم جی کوئری </h4>
+                                                <a asp-action="Details" asp-route-id="@blog.ID">
+                                                    <h4> @blog.Title </h4>
                                                 </a>
                                                 <div class="date_time">
                                                     <span class="lnr lnr-clock"></span>
-                                                    <p>5 خرداد 97</p>
+                                                    <p>@blog.CreateDate.ToFa("B")</p>
+                                                </div>
+                                                <div class="date_time">
+                                                    <span class="lnr lnr-eye"></span>
+                                                    <p>@blog.Seen</p>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="thumbnail_img">
-                                                <img src="/images/new/blog_thumb2.jpg" alt="blog thumbnail">
-                                            </div>
-                                            <div class="title_area">
-                                                <a href="#">
-                                                    <h4>بهترین  پلاگین رایگان  گالری عکس </h4>
-                                                </a>
-                                                <div class="date_time">
-                                                    <span class="lnr lnr-clock"></span>
-                                                    <p>5 خرداد 97</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="thumbnail_img">
-                                                <img src="/images/new/blog_thumb2.jpg" alt="blog thumbnail">
-                                            </div>
-                                            <div class="title_area">
-                                                <a href="#">
-                                                    <h4>10  قالب جوملا رایگان!
-                                                         
-                                                    </h4>
-                                                </a>
-                                                <div class="date_time">
-                                                    <span class="lnr lnr-clock"></span>
-                                                    <p>5 خرداد 97</p>
-                                                </div>
-                                            </div>
-                                        </li> <li>
-                                        <div class="thumbnail_img">
-                                            <img src="/images/new/blog_thumb2.jpg" alt="blog thumbnail">
-                                        </div>
-                                        <div class="title_area">
-                                            <a href="#">
-                                                <h4>10  قالب جوملا رایگان!
-                                                     
-                                                </h4>
-                                            </a>
-                                            <div class="date_time">
-                                                <span class="lnr lnr-clock"></span>
-                                                <p>5 خرداد 97</p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        }
                                     </ul>
                                     <!-- end /.post-list -->
                                 </div>
@@ -468,40 +438,19 @@
 
                     <div class="sidebar-card card--blog_sidebar card--category">
                         <div class="card-title">
-                            <h4>دسته بندی </h4>
+                            <h4>دسته بندی ها </h4>
                         </div>
                         <div class="collapsible-content">
                             <ul class="card-content">
-                                <li>
-                                    <a href="#">
-                                        <span class="lnr lnr-chevron-right"></span>ورد پرس
-                                        <span class="item-count">35</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="lnr lnr-chevron-right"></span>جوملا
-                                        <span class="item-count"> 45</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="lnr lnr-chevron-right"></span>لاراول
-                                        <span class="item-count">13</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="lnr lnr-chevron-right"></span>محبوب ترین ها
-                                        <span class="item-count">08</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="lnr lnr-chevron-right"></span>دیگر مقالات
-                                        <span class="item-count">34</span>
-                                    </a>
-                                </li>
+                                @foreach (var category in Categories)
+                                {
+                                    <li>
+                                        <a href="#">
+                                            <span class="lnr lnr-chevron-right"></span>
+                                            @category.Title
+                                        </a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                         <!-- end /.collapsible_content -->

@@ -36,6 +36,7 @@ public class AccountController : SiteBaseController
     }
 
     [HttpPost("register")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterUserDTO register)
     {
         if (!ModelState.IsValid)
@@ -99,6 +100,7 @@ public class AccountController : SiteBaseController
     }
 
     [HttpPost("login")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginUserDTO login)
     {
         if (!ModelState.IsValid)
@@ -182,6 +184,7 @@ public class AccountController : SiteBaseController
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> ForgotPassword(ForgotPasswordDTO forgot)
     {
         var user = await _userService.GetEntityByEmail(forgot.EmailAddress);
@@ -219,6 +222,7 @@ public class AccountController : SiteBaseController
     }
 
     [HttpPost("ResetPassword/{activeCode}")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> ResetPassword(string activeCode,ResetPasswordDTO reset)
     {
         if (ModelState.IsValid)

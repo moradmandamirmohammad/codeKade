@@ -10,4 +10,10 @@ public interface IBlogService : IAsyncDisposable
     Task<FilterBlogDTO> GetAll(FilterBlogDTO filter);
 
     Task<Blog> GetBlogDetail(long id);
+
+    Task<List<BlogCategory>> GetCategories();
+
+    Task<List<Blog>> GetMostSeenBlog();
+
+    Task AddSeenToBlog(long id);
 }

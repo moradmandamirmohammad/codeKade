@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using codeKade.DataLayer.Entities.Account;
 using codeKade.DataLayer.Entities.Common;
 
 namespace codeKade.DataLayer.Entities.Blog
@@ -17,6 +18,8 @@ namespace codeKade.DataLayer.Entities.Blog
 
         public long BlogCategoryId { get; set; }
 
+        public long UserId { get; set; }
+
         [Display(Name = "بدنه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Body { get; set; }
@@ -28,5 +31,7 @@ namespace codeKade.DataLayer.Entities.Blog
         public string ImageName { get; set; }
 
         public BlogCategory BlogCategory { get; set; }
+
+        public User User { get; set; }
     }
 }
