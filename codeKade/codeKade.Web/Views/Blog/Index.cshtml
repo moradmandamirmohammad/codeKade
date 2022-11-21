@@ -46,47 +46,56 @@
                 @*<button class="btn btn-primary p-2" type="submit">جستجو</button>*@
             </form>
             <div class="row" data-uk-grid>
-                @foreach (var blog in Model.Blogs)
+                @if (Model.Blogs.Any())
                 {
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single_blog blog--card">
-                            <figure>
-                                <img src="@(blog.ImageName != null ? PathTools.BlogImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="Blog image">
+                    @foreach (var blog in Model.Blogs)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single_blog blog--card">
+                                <figure>
+                                    <img src="@(blog.ImageName != null ? PathTools.BlogThumbImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="Blog image">
 
-                                <figcaption>
-                                    <div class="blog__content">
-                                        <a href="#" class="blog__title">
-                                            <h4>@blog.Title</h4>
-                                        </a>
-                                        <p>
-                                            @if (blog.Body.Length > 100)
-                                            {
-                                                blog.Body = blog.Body.Substring(0, 100);
-                                            }
-                                            @blog.Body
-                                        </p>
-                                    </div>
-
-                                    <div class="blog__meta">
-                                        <div class="date_time">
-                                            <span class="lnr lnr-clock"></span>
+                                    <figcaption>
+                                        <div class="blog__content">
+                                            <a asp-action="Details" asp-route-id="@blog.ID" class="blog__title">
+                                                <h4>@blog.Title</h4>
+                                            </a>
                                             <p>
-                                                @blog.CreateDate.ToFa("B")
+                                                @if (blog.Body.Length > 100)
+                                                {
+                                                    blog.Body = blog.Body.Substring(0, 100);
+                                                }
+                                                @blog.Body
                                             </p>
                                         </div>
-                                        <div class="comment_view">
-                                            <p class="comment">
-                                                <span class="lnr lnr-bubble"></span>45</p>
-                                            <p class="view">
-                                                <span class="lnr lnr-eye"></span>@blog.Seen</p>
+
+                                        <div class="blog__meta">
+                                            <div class="date_time">
+                                                <span class="lnr lnr-clock"></span>
+                                                <p>
+                                                    @blog.CreateDate.ToFa("B")
+                                                </p>
+                                            </div>
+                                            <div class="comment_view">
+                                                <p class="comment">
+                                                    <span class="lnr lnr-bubble"></span>45</p>
+                                                <p class="view">
+                                                    <span class="lnr lnr-eye"></span>@blog.Seen</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </figcaption>
-                            </figure>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <!-- end /.single_blog -->
                         </div>
-                        <!-- end /.single_blog -->
-                    </div>
-                    <!-- end /.col-md-4 -->
+                        <!-- end /.col-md-4 -->
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning d-block">
+                    متاسفانه پستی یافت نشد!
+                </div>
                 }
             </div>
             <!-- end /.row -->

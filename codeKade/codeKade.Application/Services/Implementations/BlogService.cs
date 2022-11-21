@@ -54,5 +54,10 @@ namespace codeKade.Application.Services.Implementations
             filter.Blogs = products;
             return filter;
         }
+
+        public async Task<Blog> GetBlogDetail(long id)
+        {
+            return await _blogRepository.GetEntityQuery().Include(b=>b.BlogCategory).SingleOrDefaultAsync(b=>b.ID == id);
+        }
     }
 }

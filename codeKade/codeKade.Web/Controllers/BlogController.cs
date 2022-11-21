@@ -19,9 +19,10 @@ namespace codeKade.Web.Controllers
             return View(data);
         }
 
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(long id)
         {
-            return View();
+            var data = await _blogService.GetBlogDetail(id);
+            return View(data);
         }
     }
 }

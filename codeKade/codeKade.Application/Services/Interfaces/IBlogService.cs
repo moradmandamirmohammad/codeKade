@@ -8,4 +8,6 @@ public interface IBlogService : IAsyncDisposable
     Task<List<Blog>> GetNewBlogs();
 
     Task<FilterBlogDTO> GetAll(FilterBlogDTO filter);
+
+    Task<Blog> GetBlogDetail(long id);
 }
