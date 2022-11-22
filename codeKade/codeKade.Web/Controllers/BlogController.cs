@@ -20,7 +20,7 @@ namespace codeKade.Web.Controllers
         }
 
         public async Task<IActionResult> Details(long id)
-        {
+        { 
             await _blogService.AddSeenToBlog(id);
             ViewBag.MostSeenBlog = await _blogService.GetMostSeenBlog();
             ViewBag.Categories = await _blogService.GetCategories();

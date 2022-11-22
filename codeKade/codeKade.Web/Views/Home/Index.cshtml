@@ -1002,7 +1002,7 @@ START LATEST NEWS
                             <img src="@(blog.ImageName != null ? PathTools.BlogImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="News Thumbnail">
                         </div>
                         <div class="news__content">
-                            <a asp-controller="Blog" asp-action="Details" class="news-title">
+                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.ID" class="news-title">
                                 <h4>@blog.Title</h4>
                             </a>
                             <p>
@@ -1010,7 +1010,7 @@ START LATEST NEWS
                                 {
                                     blog.Body = blog.Body.Substring(0, 100);
                                 }
-                                @blog.Body
+                                @Html.Raw(blog.Body)
                             </p>
                         </div>
                         <div class="news__meta">

@@ -18,7 +18,7 @@ namespace codeKade.DataLayer.Entities.Blog
 
         public long BlogCategoryId { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
 
         [Display(Name = "بدنه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]

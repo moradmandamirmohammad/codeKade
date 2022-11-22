@@ -174,6 +174,7 @@
                             <div class="support">
                                 <div class="support__title">
                                     <h3 id="cmt_title">افزودن نظر</h3>
+                                    <h3 id="usernameAnswer"></h3>
                                 </div>
                                 <div class="support__form">
                                     <div class="usr-msg">
@@ -409,10 +410,14 @@
     END SINGLE PRODUCT DESCRIPTION AREA
 ===============================================-->
 
-@section Scripts{ 
+@section Scripts{
     <script>
-        function FillAnswerBox(id) {
+        function FillAnswerBox(id, name) {
+            console.log(name);
             $("#answer").val(id);
+            $("#usernameAnswer").innerHTML = `
+            در پاسخ به : ${name}
+            `;
         }
     </script>
 }
