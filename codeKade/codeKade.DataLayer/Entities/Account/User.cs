@@ -34,11 +34,23 @@ namespace codeKade.DataLayer.Entities.Account
         [MaxLength(500, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string? Address { get; set; }
 
+        [Display(Name = "توضیحات")]
+        [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
+        public string? Description { get; set; }
+
         [Display(Name = "فعال / غیرفعال")]
         public bool IsActive { get; set; }
 
         [Display(Name = "نقش")]
         public bool IsAdmin { get; set; }
+
+        [Display(Name = "آیدی اینستاگرام")]
+        [MaxLength(100, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
+        public string? InstagramId { get; set; }
+
+        [Display(Name = "آیدی تلگرام")]
+        [MaxLength(100, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
+        public string? TelegramId { get; set; }
 
         [Display(Name = "کد فعال")]
         public string ActiveCode { get; set; }

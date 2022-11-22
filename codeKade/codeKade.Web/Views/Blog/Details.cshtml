@@ -143,11 +143,22 @@
                             @Model.User.Description
                         </p>
                         <ul>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-instagram"></span>
-                                </a>
-                            </li>
+                            @if (Model.User.InstagramId != null)
+                            {
+                                <li>
+                                    <a href="https://instagram.com/@Model.User.InstagramId">
+                                        <span class="fa fa-instagram"></span>
+                                    </a>
+                                </li>
+                            }
+                            @if (Model.User.TelegramId != null)
+                            {
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-telegram"></span>
+                                    </a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>
