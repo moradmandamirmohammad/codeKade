@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using codeKade.DataLayer.Entities.Comment;
 using codeKade.DataLayer.Entities.Common;
 
 namespace codeKade.DataLayer.Entities.Account
@@ -65,5 +66,7 @@ namespace codeKade.DataLayer.Entities.Account
         public string Avatar { get; set; }
 
         public List<Blog.Blog> Blogs { get; set; }
+
+        public List<BlogComment> BlogComments { get; set; }
     }
 }

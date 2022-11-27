@@ -1,11 +1,13 @@
 ﻿@using codeKade.Application.PathExtentions
 @using codeKade.DataLayer.Entities.Blog
+@using codeKade.DataLayer.Entities.Comment
 @using PersianDate.Standard
 @model codeKade.DataLayer.Entities.Blog.Blog
 @{
     ViewData["Title"] = "مشاهده بلاگ" + " " + Model.Title;
     var Categories = ViewBag.Categories as List<BlogCategory>;
     var MostSeen = ViewBag.MostSeenBlog as List<Blog>;
+    var Comments = ViewBag.Comments as List<BlogComment>;
 }
 
 <!--================================
@@ -171,85 +173,75 @@
 
                     <div class="comment___wrapper">
                         <ul class="media-list">
-                            <li class="depth-1">
-                                <div class="media">
-                                    <div class="pull-right no-pull-xs">
-                                        <a href="#" class="cmnt_avatar">
-                                            <img src="/images/new/comavatar.jpg" class="media-object" alt="Sample Image">
-                                        </a>
-                                    </div>
-                                    <div class="media-body" >
-                                        <div class="media_top">
-                                            <div class="heading_left pull-right">
-                                                <a href="#">
-                                                    <h4 class="media-heading">علی علوی</h4>
-                                                </a>
-                                                <span>12 خرداد 97</span>
-                                            </div>
-                                            <a href="#" class="reply hidden-xs-m pull-left">پاسخ </a>
+                            @foreach (var comment in Comments.Where(c=>c.ParentId == null))
+                            {
+                                <li class="depth-1">
+                                    <div class="media">
+                                        <div class="pull-right no-pull-xs">
+                                            <a href="#" class="cmnt_avatar">
+                                                <img style="width:90px;height:90px" src="@(comment.User.Avatar != null ? PathTools.UserImagePath + comment.User.Avatar : PathTools.DefaultUserImage)" class="media-object" alt="Sample Image">
+                                            </a>
                                         </div>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-
-                                        </p>
-                                        <a href="#" class="reply visible-xs-m  pull-left">پاسخ </a>
-                                    </div>
-                                </div>
-
-                                <ul class="children">
-                                    <!-- Nested media object -->
-                                    <li class="depth-2">
-                                        <div class="media">
-                                            <div class="pull-right no-pull-xs">
-                                                <a href="#" class="cmnt_avatar">
-                                                    <img src="/images/new/comavatar2.jpg" class="media-object" alt="Sample Image">
-                                                </a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="media_top">
-                                                    <div class="heading_left pull-right">
-                                                        <a href="#">
-                                                            <h4 class="media-heading">کاربر تست </h4>
-                                                        </a>
-                                                        <span>1 فروردین 98</span>
-                                                    </div>
-                                                    <a href="#" class="reply hidden-xs-m pull-left">
-                                                        پاسخ
+                                        <div class="media-body">
+                                            <div class="media_top">
+                                                <div class="heading_left pull-right">
+                                                    <a href="#">
+                                                        <h4 class="media-heading">@(comment.User.FirstName + " " +comment.User.LastName)</h4>
                                                     </a>
+                                                    <span>@comment.CreateDate.ToFa("f")</span>
                                                 </div>
-                                                <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-
-                                                </p>
-                                                <a href="#" class="reply visible-xs-m pull-left">پاسخ </a>
+                                                @if (comment.User.IsAdmin)
+                                                {
+                                                    <span class="btn btn-primary pr-2 pl-2">مدیر</span>
+                                                }
+                                                <a href="#" class="reply hidden-xs-m pull-left">پاسخ </a>
                                             </div>
+                                            <p>
+                                                @comment.Text
+                                            </p>
+                                            <a href="#" class="reply visible-xs-m  pull-left">پاسخ </a>
                                         </div>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="depth-1">
-                                <div class="media">
-                                    <div class="pull-left no-pull-xs">
-                                        <a href="#" class="cmnt_avatar">
-                                            <img src="/images/new/comavatar2.jpg" class="media-object" alt="Sample Image">
-                                        </a>
                                     </div>
-                                    <div class="media-body">
-                                        <div class="media_top">
-                                            <div class="heading_left pull-right">
-                                                <a href="#">
-                                                    <h4 class="media-heading">حسن</h4>
-                                                </a>
-                                                <span>1 فروردین 98</span>
-                                            </div>
-                                            <a href="#" class="reply hidden-xs-m pull-left">پاسخ </a>
-                                        </div>
-                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-
-                                        </p>
-                                        <a href="#" class="reply visible-xs-m pull-left">پاسخ </a>
-                                    </div>
-                                </div>
-                            </li>
+                                    @if (Comments.Any(c => c.ParentId == comment.ID))
+                                    {
+                                        <ul class="children">
+                                            @foreach (var child in Comments.Where(c => c.ParentId == comment.ID)) {
+                                            <!-- Nested media object -->
+                                            <li class="depth-2">
+                                                <div class="media">
+                                                    <div class="pull-right no-pull-xs">
+                                                        <a href="#" class="cmnt_avatar">
+                                                            <img style="width:90px;height:90px" src="@(child.User.Avatar != null ? PathTools.UserImagePath + child.User.Avatar : PathTools.DefaultUserImage)" class="media-object" alt="Sample Image">
+                                                        </a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="media_top">
+                                                            <div class="heading_left pull-right">
+                                                                <a href="#">
+                                                                    <h4 class="media-heading">@(child.User.FirstName + " " +child.User.LastName) </h4>
+                                                                </a>
+                                                                <span>@child.CreateDate.ToFa("f")</span>
+                                                            </div>
+                                                            @if (comment.User.IsAdmin)
+                                                            {
+                                                                <span class="btn btn-primary pr-2 pl-2">مدیر</span>
+                                                            }
+                                                            <a href="#" class="reply hidden-xs-m pull-left">
+                                                                پاسخ
+                                                            </a>
+                                                        </div>
+                                                        <p>
+                                                            @child.Text
+                                                        </p>
+                                                        <a href="#" class="reply visible-xs-m pull-left">پاسخ </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
                         </ul>
                     </div>
                     <!-- end /.comment___wrapper -->
@@ -261,32 +253,32 @@
                     <div class="comment__title">
                         <h4>نظر خود را بنویسید </h4>
                     </div>
-                    <div class="commnet_form_wrapper">
-                        <div class="row">
-                            <!-- start form -->
-                            <form class="cmnt_reply_form" action="#" method="post">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="input_field" type="text" placeholder="نام " required="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input class="input_field" type="email" placeholder="ایمیل " required="">
-                                    </div>
-                                </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="commnet_form_wrapper">
+                            <div class="row">
+                                <!-- start form -->
+                                <form class="cmnt_reply_form" asp-action="" method="post">
+                                    <input name="comments.ParentId" type="hidden" id="answer"/>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="input_field" name="name" placeholder="متن خود را بنویسید " rows="10" cols="80"></textarea>
-                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="input_field" name="comments.Text" placeholder="متن خود را بنویسید " rows="10" cols="80"></textarea>
+                                        </div>
 
-                                    <button type="submit" class="btn btn--round btn--default" name="btn">ثبت نظر </button>
-                                </div>
-                            </form>
-                            <!-- end form -->
+                                        <button type="submit" class="btn btn--round btn--default" name="btn">ثبت نظر </button>
+                                    </div>
+                                </form>
+                                <!-- end form -->
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            برای افزودن نظر ابتدا <a href="/login">وارد</a> حساب کاربری خود شوید
+                        </div>
+                    }
                     <!-- end /.commnet_form_wrapper -->
                 </div>
                 <!-- end /.comment_area_wrapper -->

@@ -33,6 +33,7 @@ builder.Services.AddScoped<IViewRenderService, ViewRenderService>();
 builder.Services.AddScoped<IEventService, EventService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IBlogCommentService, BlogCommentService>();
 
 #endregion
 

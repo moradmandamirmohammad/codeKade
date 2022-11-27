@@ -33,6 +33,7 @@ namespace codeKade.DataLayer.Context
         #region Comment
 
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
 
         #endregion
 
