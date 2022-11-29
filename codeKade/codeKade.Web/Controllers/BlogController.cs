@@ -41,6 +41,7 @@ namespace codeKade.Web.Controllers
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddComment(AddBlogCommentDTO comments)
         {
             comments.UserId = User.GetUserID();
