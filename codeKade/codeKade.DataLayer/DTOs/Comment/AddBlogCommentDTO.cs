@@ -13,6 +13,8 @@ namespace codeKade.DataLayer.DTOs.Comment
 
         public long UserId { get; set; }
 
+        public long BLogId { get; set; }
+
         public long EventId { get; set; }
 
         [Required]

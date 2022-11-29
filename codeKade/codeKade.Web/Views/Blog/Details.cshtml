@@ -194,7 +194,7 @@
                                                 {
                                                     <span class="btn btn-primary pr-2 pl-2">مدیر</span>
                                                 }
-                                                <a href="#" class="reply hidden-xs-m pull-left">پاسخ </a>
+                                                <a onclick="FillAnswerBox(@comment.ID)" href="#cmtForm" class="reply hidden-xs-m pull-left">پاسخ </a>
                                             </div>
                                             <p>
                                                 @comment.Text
@@ -226,9 +226,7 @@
                                                             {
                                                                 <span class="btn btn-primary pr-2 pl-2">مدیر</span>
                                                             }
-                                                            <a href="#" class="reply hidden-xs-m pull-left">
-                                                                پاسخ
-                                                            </a>
+                                                           
                                                         </div>
                                                         <p>
                                                             @child.Text
@@ -258,9 +256,9 @@
                         <div class="commnet_form_wrapper">
                             <div class="row">
                                 <!-- start form -->
-                                <form class="cmnt_reply_form" asp-action="" method="post">
+                                <form class="cmnt_reply_form" asp-action="AddComment" method="post" id="#cmtForm">
                                     <input name="comments.ParentId" type="hidden" id="answer"/>
-
+                                    <input name="comments.BLogId" type="hidden" value="@Model.ID"/>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <textarea class="input_field" name="comments.Text" placeholder="متن خود را بنویسید " rows="10" cols="80"></textarea>
@@ -493,5 +491,11 @@
 <!--================================
         END LOGIN AREA
 =================================-->
-
+@section Scripts{
+    <script>
+        function FillAnswerBox(id) {
+            $("#answer").val(id);
+        }
+    </script>
+}
 
