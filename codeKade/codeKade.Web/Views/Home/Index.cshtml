@@ -151,8 +151,45 @@ END FEATURE AREA
 =================================-->
 
 
-
-
+<!--================================
+START LOGIN AREA
+=================================-->
+<section class="event_area section--padding2 dir-rtl">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="featured_event">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="event_img">
+                            <img src="images/new/ev1.jpg" alt="event thumbnail">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="featured_event_detail">
+                            <h1>رویداد آینده ما در تهران </h1>
+                            <ul class="date_place">
+                                <li>
+                                    <span class="lnr lnr-calendar-full"></span>
+                                    <p>17-19 خرداد 98</p>
+                                </li>
+                                <li>
+                                    <span class="lnr lnr-map-marker"></span>
+                                    <p>ایران ، تهران </p>
+                                </li>
+                            </ul>
+                            <ul class="countdown"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--================================
+END LOGIN AREA
+=================================-->
 
 <!--================================
 START PRODUCTS AREA
@@ -1075,3 +1112,17 @@ START SPECIAL FEATURES AREA
 <!--================================
 END SPECIAL FEATURES AREA
 =================================-->
+
+@section Scripts
+{
+    <script>
+        /* COUNTDOWN INIT */
+        $('.countdown').countdown('2022/12/4', function (event) {
+            var $this = $(this).html(event.strftime(''
+                + '<li>%D <span>روز </span></li>  '
+                + '<li>%H <span>ساعت</span></li>  '
+                + '<li>%M <span>دقیقه</span></li>  '
+                + '<li>%S <span>ثانیه</span></li> '));
+        });
+    </script>
+}

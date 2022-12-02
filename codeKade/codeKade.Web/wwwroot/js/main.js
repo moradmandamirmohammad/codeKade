@@ -116,14 +116,7 @@
         $(this).parents('.media').siblings('.reply-comment').toggle().find('textarea').focus();
     });
 
-    /* COUNTDOWN INIT */
-    $('.countdown').countdown('2020/11/25', function (event) {
-        var $this = $(this).html(event.strftime(''
-            + '<li>%D <span>روز </span></li>  '
-            + '<li>%H <span>ساعت</span></li>  '
-            + '<li>%M <span>دقیقه</span></li>  '
-            + '<li>%S <span>ثانیه</span></li> '));
-    });
+    
 
 
     // accordion js
