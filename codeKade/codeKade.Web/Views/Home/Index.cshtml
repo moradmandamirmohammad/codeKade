@@ -295,7 +295,7 @@ START PRODUCTS AREA
                 <!-- end /.product__thumbnail -->
 
                 <div class="product-desc">
-                    <a asp-action="EventDetail" asp-route-id="@events.ID" class="product_title">
+                    <a asp-controller="Event" asp-action="Details" asp-route-id="@events.ID" class="product_title">
                         <h4>@events.Title </h4>
                     </a>
                     <ul class="titlebtm">
