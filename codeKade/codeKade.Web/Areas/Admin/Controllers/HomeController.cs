@@ -2,7 +2,7 @@
 
 namespace codeKade.Web.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : AdminBaseController
     {
         public IActionResult Index()
         {
