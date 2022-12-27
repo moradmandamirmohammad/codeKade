@@ -1,0 +1,439 @@
+﻿@using codeKade.Application.PathExtentions
+@using System.Security.Claims
+@using codeKade.Web.HttpContext
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- viewport meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MartPlace - Complete Online Multipurpose Marketplace HTML Template">
+    <meta name="keywords" content="marketplace, easy digital download, digital product, digital, html5">
+
+
+    <title>کد کده | @ViewData["Title"] </title>
+
+    <!-- inject:css -->
+    <partial name="_HeaderReferences" />
+    <!-- endinject -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+</head>
+
+<body class="preload home1 mutlti-vendor">
+
+<!-- ================================
+START MENU AREA
+================================= -->
+<!-- start menu-area -->
+<div class="menu-area dir-rtl">
+<!-- start .top-menu-area -->
+<div class="top-menu-area">
+<!-- start .container -->
+<div class="container">
+<!-- start .row -->
+<div class="row">
+<!-- start .col-md-3 -->
+<div class="col-lg-3 col-md-3 col-6 v_middle">
+    <div class="logo">
+        <a href="index.html">
+            <img src="/images/logo.png" alt="logo image" class="img-fluid">
+        </a>
+    </div>
+</div>
+<!-- end /.col-md-3 -->
+
+<!-- start .col-md-5 -->
+<div class="col-lg-8 offset-lg-1 col-md-9 col-6 v_middle">
+<!-- start .author-area -->
+<div class="author-area">
+<a href="signup.html" class="author-area__seller-btn inline">همکاری با ما</a>
+
+<div class="author__notification_area">
+<ul>
+<li class="has_dropdown">
+    
+</li>
+
+</ul>
+</div>
+<!--start .author__notification_area -->
+
+<!--start .author-author__info-->
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="author-author__info inline has_dropdown">
+        <div class="author__avatar">
+            <img style="width: 50px; height: 50px;border-radius: 50%" src="@(PathTools.UserImagePath + User.FindFirstValue("Avatar"))" alt="user avatar">
+
+        </div>
+        <div class="autor__info">
+            <p class="name">
+                @User.Identity.Name
+            </p>
+            <!--<p class="ammount">2000 تومان</p>-->
+        </div>
+
+        <div class="dropdowns dropdown--author">
+            <ul>
+                <li>
+                    <a href="/user">
+                        <span class="lnr lnr-user"></span>پروفایل </a>
+                </li>
+                <li>
+                    <a href="/logout">
+                        <span class="lnr lnr-exit"></span>خروج </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <a class="go_cart" href="/login">ورود </a>
+    <span>/</span>
+    <a class="go_checkout" href="/register">ثبت نام </a>
+}
+<!--end /.author-author__info-->
+</div>
+<!-- end .author-area -->
+
+<!-- author area restructured for mobile -->
+<div class="mobile_content ">
+    <span class="lnr lnr-user menu_icon"></span>
+
+    <!-- offcanvas menu -->
+    <div class="offcanvas-menu closed">
+        <span class="lnr lnr-cross close_menu"></span>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="author-author__info">
+                <div class="author__avatar v_middle">
+                    <img style="width: 50px; height: 50px;border-radius: 50%" src="@(User.FindFirstValue("Avatar") != null ? PathTools.UserImagePath + User.FindFirstValue("Avatar") : PathTools.DefaultUserImage)" alt="user avatar">
+                </div>
+                <div class="autor__info v_middle">
+                    <p class="name">
+                        @User.Identity.Name
+                    </p>
+                </div>
+            </div>
+            <!--end /.author-author__info-->
+
+        
+
+            <div class="dropdowns dropdown--author">
+                <ul>
+                    <li>
+                        <a href="/user">
+                            <span class="lnr lnr-user"></span>پروفایل </a>
+                    </li>
+                    <li>
+                        <a href="/logout">
+                            <span class="lnr lnr-exit"></span>خروج </a>
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="dropdowns dropdown--author">
+                <ul>
+                    <li>
+                        <a href="/login">
+                            <span class="lnr lnr-user"></span>ورود به حساب </a>
+                    </li>
+                    <li>
+                        <a href="/register">
+                            <span class="lnr lnr-exit"></span>ساخت حساب </a>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>
+<!-- end /.mobile_content -->
+</div>
+<!-- end /.col-md-5 -->
+</div>
+<!-- end /.row -->
+</div>
+<!-- end /.container -->
+</div>
+<!-- end  -->
+
+<!-- start .mainmenu_area -->
+<div class="mainmenu">
+<!-- start .container -->
+<div class="container">
+<!-- start .row-->
+<div class="row">
+<!-- start .col-md-12 -->
+<div class="col-md-12">
+<div class="navbar-header">
+    <!-- start mainmenu__search -->
+    <div class="mainmenu__search">
+        <form action="#">
+            <div class="searc-wrap">
+                <input type="text" placeholder="جستجوی محصول ">
+                <button type="submit" class="search-wrap__btn">
+                    <span class="lnr lnr-magnifier"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- start mainmenu__search -->
+</div>
+
+<nav class="navbar navbar-expand-md navbar-light mainmenu__menu">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false"
+        aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav">
+<li class="has_dropdown">
+    <a href="/">خانه </a>
+</li>
+    <li class="has_dropdown">
+        <a href="all-products-list.html">رویداد ها</a>
+    </li>
+    <li class="has_dropdown">
+        <a href="/blog">بلاگ</a>
+    </li>
+<li class="has_dropdown">
+    <a href="#">همکاران </a>
+</li>
+
+<li>
+    <a href="contact.html">تماس با ما</a>
+</li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</nav>
+</div>
+<!-- end /.col-md-12 -->
+</div>
+<!-- end /.row-->
+</div>
+<!-- start .container -->
+</div>
+<!-- end /.mainmenu-->
+</div>
+<!-- end /.menu-area -->
+<!--================================
+END MENU AREA
+=================================-->
+
+@RenderBody();
+
+<!--================================
+START CALL TO ACTION AREA
+=================================-->
+<section class="call-to-action bgimage dir-rtl">
+    <div class="bg_image_holder">
+        <img src="/images/new/calltobg.jpg" alt="">
+    </div>
+    <div class="container content_above">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="call-to-wrap">
+                    <h1 class="text--white">آماده پیوستن به ما هستید !</h1>
+                    <h4 class="text--white">بیش از 25،000 طراح و توسعهدهنده به ما اعتماد دارند.</h4>
+                    <a href="#" class="btn btn--lg btn--round btn--white callto-action-btn">امروز به ما بپیوندید</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================================
+END CALL TO ACTION AREA
+=================================-->
+
+<!--================================
+START FOOTER AREA
+=================================-->
+<footer class="footer-area dir-rtl">
+    <div class="footer-big section--padding">
+        <!-- start .container -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="info-footer">
+                        <div class="info__logo">
+                            <img src="/images/new/flogo.png" alt="footer logo">
+                        </div>
+                        <p class="info--text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                            طراحان گرافیک است. </p>
+                        <ul class="info-contact">
+                            <li>
+                                <span class="lnr lnr-phone info-icon"></span>
+                                <span class="info">تلفن :324-34-32-98901+</span>
+                            </li>
+                            <li>
+                                <span class="lnr lnr-envelope info-icon"></span>
+                                <span class="info dir-rtl">amir.d79@yahoo.com</span>
+                            </li>
+                            <li>
+                                <span class="lnr lnr-map-marker info-icon"></span>
+                                <span class="info">ایران ،یزد ،اکرم آباد </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- end /.info-footer -->
+                </div>
+                <!-- end /.col-md-3 -->
+
+                <div class="col-lg-5 col-md-6">
+                    <div class="footer-menu">
+                        <h4 class="footer-widget-title text--white">شرکت ما</h4>
+                        <ul>
+                            <li>
+                                <a href="#">چگونه با ما بپیوندید</a>
+                            </li>
+                            <li>
+                                <a href="#">چطور کار میکند</a>
+                            </li>
+                            <li>
+                                <a href="#">خرید و فروش</a>
+                            </li>
+                            <li>
+                                <a href="#">مشتریان</a>
+                            </li>
+
+                            <li>
+                                <a href="#">سیاست بازپرداخت</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- end /.footer-menu -->
+
+                    <div class="footer-menu">
+                        <h4 class="footer-widget-title text--white">سوالات متداول</h4>
+                        <ul>
+                            <li>
+                                <a href="#">چگونه با ما بپیوندید</a>
+                            </li>
+                            <li>
+                                <a href="#">چطور کار میکند</a>
+                            </li>
+                            <li>
+                                <a href="#">خرید و فروش</a>
+                            </li>
+                            <li>
+                                <a href="#">مشتریان</a>
+                            </li>
+
+                            <li>
+                                <a href="#">سیاست بازپرداخت</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- end /.footer-menu -->
+                </div>
+                <!-- end /.col-md-5 -->
+
+                <div class="col-lg-4 col-md-12">
+                    <div class="newsletter">
+                        <h4 class="footer-widget-title text--white">خبر نامه</h4>
+                        <p>مشترک شدن برای دریافت آخرین اخبار، به روز رسانی و ارائه اطلاعات. نگران نباشید، ما هرزنامه
+                            ارسال نخواهیم کرد</p>
+                        <div class="newsletter__form">
+                            <form action="#">
+                                <div class="field-wrapper">
+                                    <input class="relative-field rounded" type="text" placeholder="ایمیل را وارد کنید ">
+                                    <button class="btn btn--round" type="submit">ارسال</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- start .social -->
+                        <div class="social social--color--filled">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-facebook"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-twitter"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-google-plus"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-pinterest"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-linkedin"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="fa fa-dribbble"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- end /.social -->
+                    </div>
+                    <!-- end /.newsletter -->
+                </div>
+                <!-- end /.col-md-4 -->
+            </div>
+            <!-- end /.row -->
+        </div>
+        <!-- end /.container -->
+    </div>
+    <!-- end /.footer-big -->
+
+    <div class="mini-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright-text">
+                        <p>
+                            <a href="#"></a>کپی رایت &copy; 2019. تمام حقوق برای طراح محفوظ است
+                            <a target="_blank" href="http://damandarya.ir">دامن دریا </a>
+                        </p>
+                    </div>
+
+                    <div class="go_top">
+                        <span class="lnr lnr-chevron-up"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--================================
+END FOOTER AREA
+=================================-->
+
+<!--//////////////////// JS GOES HERE ////////////////-->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0C5etf1GVmL_ldVAichWwFFVcDfa1y_c"></script>
+<!-- inject:js -->
+<partial name="_FooterReferences" />
+<partial name="_SiteMessages" />
+@RenderSection("Scripts",false)
+<!-- endinject -->
+</body>
+
+</html>
