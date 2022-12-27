@@ -111,7 +111,7 @@ namespace codeKade.Application.Services.Implementations
                 Mobile = register.Mobile,
                 Password = _passwordHelper.EncodePasswordMd5(register.Password),
                 ActiveCode = Guid.NewGuid().ToString("N"),
-                Avatar = "usr_avatar.png",
+                Avatar = "usr_avatar.jpg",
                 IsAdmin = false
             };
             await _userRepository.AddEntity(user);
