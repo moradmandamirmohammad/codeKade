@@ -9,4 +9,8 @@ public interface ICommentService : IAsyncDisposable
     Task<bool> AddComment(string text, long userId, long eventId,long? parentId);
 
     Task<List<Comment>> GetIndexComments();
+
+    Task<int> CountOfComments();
+
+    Task<int> CountOfTodayComments();
 }

@@ -42,14 +42,14 @@ namespace codeKade.Application.Services.Implementations
             return true;
         }
 
-        public int GetTodayUsers()
+        public async Task<int> GetTodayUsers()
         {
-            return _userRepository.GetEntityQuery().Count(u=>u.CreateDate.Date == DateTime.Now.Date);
+            return await _userRepository.GetEntityQuery().CountAsync(u=>u.CreateDate.Date == DateTime.Now.Date);
         }
 
-        public int CountOfUsers()
+        public async Task<int> CountOfUsers()
         {
-            return _userRepository.GetEntityQuery().Count();
+            return await _userRepository.GetEntityQuery().CountAsync();
         }
 
         public async Task<bool> ActiveAccount(string ActiveCode)

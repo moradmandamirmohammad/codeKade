@@ -79,5 +79,15 @@ namespace codeKade.Application.Services.Implementations
             _blogRepository.EditEntity(blog);
             await _blogRepository.SaveChanges();
         }
+
+        public async Task<int> CountOfTodayBlog()
+        {
+            return await _blogRepository.GetEntityQuery().CountAsync(b => b.CreateDate.Date == DateTime.Now.Date);
+        }
+
+        public async Task<int> CountOfBlogs()
+        {
+            return await _blogRepository.GetEntityQuery().CountAsync();
+        }
     }
 }

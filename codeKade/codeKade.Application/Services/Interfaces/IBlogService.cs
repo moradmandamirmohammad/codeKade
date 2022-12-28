@@ -16,4 +16,8 @@ public interface IBlogService : IAsyncDisposable
     Task<List<Blog>> GetMostSeenBlog();
 
     Task AddSeenToBlog(long id);
+
+    Task<int> CountOfTodayBlog();
+
+    Task<int> CountOfBlogs();
 }

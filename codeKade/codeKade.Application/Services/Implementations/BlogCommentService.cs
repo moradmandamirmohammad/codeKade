@@ -64,5 +64,16 @@ namespace codeKade.Application.Services.Implementations
                 await _blogCommentRepository.SaveChanges();
             }
         }
+
+        public async Task<int> CountOfTodayComments()
+        { 
+            return await _blogCommentRepository.GetEntityQuery().CountAsync(bc => bc.CreateDate.Date == DateTime.Now.Date);
+        }
+
+        public async Task<int> CountOfComments()
+        {
+            return await _blogCommentRepository.GetEntityQuery().CountAsync();
+
+        }
     }
 }

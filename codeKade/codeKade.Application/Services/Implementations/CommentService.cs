@@ -67,5 +67,15 @@ namespace codeKade.Application.Services.Implementations
         {
             return await _commentRepository.GetEntityQuery().Where(c => c.ShowInIndex).Include(c=>c.User).ToListAsync();
         }
+
+        public async Task<int> CountOfComments()
+        {
+            return await _commentRepository.GetEntityQuery().CountAsync();
+        }
+
+        public async Task<int> CountOfTodayComments()
+        {
+            return await _commentRepository.GetEntityQuery().CountAsync(c => c.CreateDate.Date == DateTime.Now.Date);
+        }
     }
 }
