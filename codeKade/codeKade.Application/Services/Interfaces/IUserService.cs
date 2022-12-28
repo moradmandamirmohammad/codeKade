@@ -20,5 +20,9 @@ namespace codeKade.Application.Services.Interfaces
         Task<User> GetUserByActiveCode(string ActiveCode);
 
         Task<bool> ResetPassword(string Code, ResetPasswordDTO reset);
+        
+        int GetTodayUsers();
+
+        int CountOfUsers();
     }
 }

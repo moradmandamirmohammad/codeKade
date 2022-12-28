@@ -42,6 +42,16 @@ namespace codeKade.Application.Services.Implementations
             return true;
         }
 
+        public int GetTodayUsers()
+        {
+            return _userRepository.GetEntityQuery().Count(u=>u.CreateDate.Date == DateTime.Now.Date);
+        }
+
+        public int CountOfUsers()
+        {
+            return _userRepository.GetEntityQuery().Count();
+        }
+
         public async Task<bool> ActiveAccount(string ActiveCode)
         {
             var user = await GetUserByActiveCode(ActiveCode);
