@@ -24,5 +24,7 @@ namespace codeKade.Application.Services.Interfaces
         Task<int> GetTodayUsers();
 
         Task<int> CountOfUsers();
+
+        Task<FilterUserDTO> GetUsersList(FilterUserDTO filter);
     }
 }
