@@ -72,7 +72,7 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> کاربران </span><span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="/admin/user"><i class="dripicons-user-group"></i> همه کاربران</a></li>
+                                <li><a asp-area="Admin" asp-controller="User" asp-action="Index"><i class="dripicons-user-group"></i> همه کاربران</a></li>
                                 <li><a href="ui-alerts.html"><i class="dripicons-checkmark"></i> کاربران فعال </a></li>
                                 <li><a href="ui-alerts.html"><i class="dripicons-document-remove"></i> کاربران حذف شده </a></li>
                             </ul>
@@ -209,7 +209,8 @@
 
     <!-- App js -->
     <script src="/assets/js/app.js"></script>
-
+    
+@RenderSection("Scripts" , false)
 </body>
 
 </html>

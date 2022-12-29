@@ -1,0 +1,36 @@
+﻿@model codeKade.DataLayer.DTOs.Paging.BasePaging
+
+<div class="row">
+    <div class="col-xl-12 offset-xl-3">
+        <div class="card m-b-30">
+            <div class="card-body">
+
+                <nav aria-label="..." class="justify-content-center">
+                    <ul class="pagination" class="justify-content-center">
+                        @if (Model.StartPage != 1)
+                        {
+                            <li class="page-item">
+                                <span class="page-link"><a onclick="FillPageId(1)"> صفحه اول </a></span>
+                            </li>
+                        }
+                        @for (int i = Model.StartPage; i <= Model.EndPage; i++)
+                        {
+                            <li class="page-item @(Model.PageID == i ? "active" : "")">
+                                <span class="page-link">
+                                    <a onclick="FillPageId(@i)">@i</a>
+                                    <span class="sr-only">(جاری)</span>
+                                </span>
+                            </li>
+                        }
+                        @if (Model.EndPage != Model.PageCount)
+                        {
+                            <li class="page-item">
+                                <span class="page-link"><a onclick="FillPageId(@Model.PageCount)">صفحه آخر</a></span>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
