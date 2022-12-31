@@ -82,6 +82,44 @@ namespace codeKade.Application.Services.Implementations
             return filter;
         }
 
+        public async Task<RegisterUserResult> AdminRegisterUser(RegisterUserDTO register)
+        {
+            var IsExists = await _userRepository.GetEntityQuery().AnyAsync(s => s.Email == register.Email && s.IsActive == true);
+            if (IsExists == true)
+            {
+                return RegisterUserResult.EmailConflict;
+            }
+            var user = new User
+            {
+                FirstName = register.FirstName,
+                LastName = register.LastName,
+                Email = register.Email,
+                Mobile = register.Mobile,
+                Password = _passwordHelper.EncodePasswordMd5(register.Password),
+                ActiveCode = Guid.NewGuid().ToString("N"),
+                Avatar = "usr_avatar.jpg",
+                IsActive = true,
+                IsAdmin = false
+            };
+            await _userRepository.AddEntity(user);
+            await _userRepository.SaveChanges();
+            return RegisterUserResult.Success;
+        }
+
+        public async Task<long> DeleteUser(long id)
+        {
+            var user = await _userRepository.GetByID(id);
+            if (user != null)
+            {
+                user.IsDelete = true;
+                _userRepository.EditEntity(user);
+                await _userRepository.SaveChanges();
+                return user.ID;
+            }
+
+            return 0;
+        }
+
         public async Task<bool> ActiveAccount(string ActiveCode)
         {
             var user = await GetUserByActiveCode(ActiveCode);

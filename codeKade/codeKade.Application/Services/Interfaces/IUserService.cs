@@ -26,5 +26,9 @@ namespace codeKade.Application.Services.Interfaces
         Task<int> CountOfUsers();
 
         Task<FilterUserDTO> GetUsersList(FilterUserDTO filter);
+
+        Task<RegisterUserResult> AdminRegisterUser(RegisterUserDTO register);
+
+        Task<long> DeleteUser(long id);
     }
 }

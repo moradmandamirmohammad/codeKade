@@ -54,9 +54,7 @@
     <div class="col-lg-12">
         <div class="card m-b-30">
             <div class="card-body">
-
-
-
+                <a class="btn btn-primary text-white" onclick="ShowAddUser()">افزودن کاربر جدید</a>
                 <div class="table-responsive">
                     <table class="table table-striped mb-0">
                         <thead>
@@ -81,7 +79,7 @@
                             {
                                 @foreach (var user in Model.Users)
                                 {
-                                    <tr>
+                                    <tr id="@user.ID">
                                         <th scope="row" @(user.IsAdmin ? "class=bg-warning" : "")>@user.ID</th>
                                         <td>@user.FirstName</td>
                                         <td>@user.LastName</td>
@@ -89,9 +87,9 @@
                                         <td>@user.Mobile</td>
                                         <td>@(user.IsActive ? "فعال" : "غیرفعال")</td>
                                         <td>
-                                            <a class="btn btn-success text-white">مشاهده</a>
+                                            <a onclick="FillShowUser(@user.ID)" class="btn btn-success text-white" data-toggle="modal" data-target=".bs-example-modal-lg">مشاهده</a>
                                             <a class="btn btn-warning text-white">ویرایش</a>
-                                            <a class="btn btn-danger text-white">حذف</a>
+                                            <a onclick="DeleteUser(@user.ID)" class="btn btn-danger text-white">حذف</a>
                                             @if (user.IsAdmin)
                                             {
                                                 <a class="btn btn-primary text-white">نزول</a>
@@ -112,8 +110,10 @@
     </div> <!-- end col -->
 </div>
 
-
 <partial name="_AdminPaging" model="Model.GetCurrentPaging()"/>
+
+<div id="UserDetail"></div>
+<div id="AddUser"></div>
 
 @section Scripts{
     <script>
@@ -121,5 +121,45 @@
             $("#PageID").val(page);
             $("#filter-form").submit();
         }
-    </script>  
+
+        function FillShowUser(id) {
+            $.ajax({
+                type: "GET",
+                url: "/admin/user/GetUserDetail/"+id,
+                data: id,
+                success: function(data) {
+                    $("#UserDetail").html(data);
+                    $('#Modal').modal('toggle');
+                },
+                error: function(errorData) { onError(errorData); }
+            });
+        }
+        function ShowAddUser() {
+            $.ajax({
+                type: "GET",
+                url: "/admin/user/AddUser/",
+                data: null,
+                success: function(data) {
+                    $("#AddUser").html(data);
+                    $('#AddModal').modal('toggle');
+                },
+                error: function(errorData) { onError(errorData); }
+            });
+        }
+        function DeleteUser(id) {
+            $.ajax({
+                type: "GET",
+                url: "/admin/user/DeleteUser/"+id,
+                data: id,
+                success: function(data) {
+                    $("#"+data).hide(1000);
+                },
+                error: function(errorData) { onError(errorData); }
+            });
+        }
+        function CloseModal() {
+            var modalToggle = document.getElementById('Modal');
+            modalToggle.hide();
+        }
+    </script>
 }

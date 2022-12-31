@@ -1,0 +1,19 @@
+﻿@using codeKade.Application.PathExtentions
+@model codeKade.DataLayer.Entities.Account.User
+
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@(Model.FirstName + " " + Model.LastName)</h5>
+                
+            </div>
+            <div class="modal-body">
+                <img src="@(PathTools.UserImagePath + Model.Avatar)" width="150px" height="150px" style="border-radius: 50%"/>
+                <p>آدرس : @(Model.Address != "" ? Model.Address : "خالی")</p>
+                <p><i class="mdi mdi-instagram"></i> : @Model.InstagramId</p>
+            </div>
+            
+        </div>
+    </div>
+</div>

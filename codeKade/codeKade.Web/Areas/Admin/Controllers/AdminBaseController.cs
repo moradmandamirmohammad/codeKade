@@ -7,5 +7,9 @@ namespace codeKade.Web.Areas.Admin.Controllers
     [Authorize]
     public class AdminBaseController : Controller
     {
+        protected string ErrorMessage = "ErrorMessage";
+        protected string SuccessMessage = "SuccessMessage";
+        protected string InfoMessage = "InfoMessage";
+        protected string WarningMessage = "WarningMessage";
     }
 }
