@@ -57,5 +57,18 @@ namespace codeKade.Web.Areas.Admin.Controllers
                 return Json(id);
             }
         }
+
+        public async Task<IActionResult> ChangePermission(long id)
+        {
+            var res = await _userService.ChangePermission(id);
+            if (res)
+            {
+                TempData[SuccessMessage] = "عملیات با موفقیت انجام شد";
+                return RedirectToAction("Index", "User", new { area = "Admin" });
+            }
+
+            TempData[ErrorMessage] = "مشکلی در انجام فرایند پیش آمد";
+            return RedirectToAction("Index", "User", new { area = "Admin" });
+        }
     }
 }

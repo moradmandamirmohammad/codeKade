@@ -92,11 +92,11 @@
                                             <a onclick="DeleteUser(@user.ID)" class="btn btn-danger text-white">حذف</a>
                                             @if (user.IsAdmin)
                                             {
-                                                <a class="btn btn-primary text-white">نزول</a>
+                                                <a asp-action="ChangePermission" asp-route-id="@user.ID" class="btn btn-primary text-white">نزول</a>
                                             }
                                             else
                                             {
-                                                <a class="btn btn-primary text-white">ارتقا</a>
+                                                <a asp-action="ChangePermission" asp-route-id="@user.ID" class="btn btn-primary text-white">ارتقا</a>
                                             }
                                         </td>
                                     </tr>

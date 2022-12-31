@@ -43,5 +43,19 @@ namespace codeKade.DataLayer.Context
         public DbSet<BlogCategory> BlogCategories { get; set; }
 
         #endregion
+
+        #region Query Filter
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Blog>().HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Event>().HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<BlogComment>().HasQueryFilter(u => !u.IsDelete);
+            modelBuilder.Entity<Comment>().HasQueryFilter(u => !u.IsDelete);
+        }
+        #endregion
     }
+
+
 }

@@ -120,6 +120,27 @@ namespace codeKade.Application.Services.Implementations
             return 0;
         }
 
+        public async Task<bool> ChangePermission(long id)
+        {
+            var user = await _userRepository.GetByID(id);
+            if (user == null)
+            {
+                return false;
+            }
+            if (user.IsAdmin)
+            {
+                user.IsAdmin = false;
+            }
+            else
+            {
+                user.IsAdmin = true;
+            }
+
+            _userRepository.EditEntity(user);
+            await _userRepository.SaveChanges();
+            return true;
+        }
+
         public async Task<bool> ActiveAccount(string ActiveCode)
         {
             var user = await GetUserByActiveCode(ActiveCode);

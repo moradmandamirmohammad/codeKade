@@ -30,5 +30,7 @@ namespace codeKade.Application.Services.Interfaces
         Task<RegisterUserResult> AdminRegisterUser(RegisterUserDTO register);
 
         Task<long> DeleteUser(long id);
+
+        Task<bool> ChangePermission(long id);
     }
 }
