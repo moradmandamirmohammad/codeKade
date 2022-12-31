@@ -146,6 +146,18 @@
                 error: function(errorData) { onError(errorData); }
             });
         }
+        function ShowEditUser(id) {
+            $.ajax({
+                type: "GET",
+                url: "/admin/user/EditUser/"+id,
+                data: id,
+                success: function(data) {
+                    $("#EditUser").html(data);
+                    $('#EditModal').modal('toggle');
+                },
+                error: function(errorData) { onError(errorData); }
+            });
+        }
         function DeleteUser(id) {
             $.ajax({
                 type: "GET",

@@ -29,6 +29,12 @@ namespace codeKade.Web.Areas.Admin.Controllers
             return PartialView("_AddUser");
         }
 
+        public async Task<IActionResult> EditUser(long id)
+        {
+            var user = await _userService.GetById(id);
+            return PartialView("_AddUser" , user);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddUser(RegisterUserDTO register)
         {
