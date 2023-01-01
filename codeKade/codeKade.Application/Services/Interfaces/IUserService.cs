@@ -34,5 +34,9 @@ namespace codeKade.Application.Services.Interfaces
         Task<bool> ChangePermission(long id);
 
         Task<FilterUserDTO> GetTodayUsers(FilterUserDTO filter);
+
+        Task<FilterUserDTO> GetDeletedUsers(FilterUserDTO filter);
+
+        Task<bool> ReturnDeletedUser(long id);
     }
 }

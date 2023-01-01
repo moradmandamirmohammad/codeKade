@@ -171,6 +171,50 @@ namespace codeKade.Application.Services.Implementations
             return filter;
         }
 
+        public async Task<FilterUserDTO> GetDeletedUsers(FilterUserDTO filter)
+        {
+            var query = _userRepository.GetEntityQuery().AsQueryable();
+
+            if (!string.IsNullOrEmpty(filter.FirstName))
+            {
+                query = query.Where(s => EF.Functions.Like(s.FirstName, $"%{filter.FirstName}%"));
+            }
+            if (!string.IsNullOrEmpty(filter.LastName))
+            {
+                query = query.Where(s => EF.Functions.Like(s.LastName, $"%{filter.LastName}%"));
+            }
+            if (!string.IsNullOrEmpty(filter.EmailAddress))
+            {
+                query = query.Where(s => EF.Functions.Like(s.Email, $"%{filter.EmailAddress}%"));
+            }
+
+
+            filter.SkipEntity = (filter.PageID - 1) * filter.TakeEntity;
+            var entitiesCount = await query.CountAsync();
+            filter.PageCount = (int)Math.Ceiling(entitiesCount / (double)filter.TakeEntity);
+
+            var products = await query.IgnoreQueryFilters().OrderBy(s => s.ID).Where(u => u.IsDelete).Skip(filter.SkipEntity).Take(filter.TakeEntity)
+                .ToListAsync();
+            filter.StartPage = filter.PageID - 3 > 0 ? filter.PageID - 3 : 1;
+            filter.EndPage = filter.PageID + 3 <= filter.PageCount ? filter.PageID + 3 : filter.PageCount;
+            filter.Users = products;
+            return filter;
+        }
+
+        public async Task<bool> ReturnDeletedUser(long id)
+        {
+            var user = await _userRepository.GetEntityQuery().IgnoreQueryFilters().FirstOrDefaultAsync(u=>u.ID == id);
+            if (user == null)
+            {
+                return false;
+            }
+
+            user.IsDelete = false;
+            _userRepository.EditEntity(user);
+            await _userRepository.SaveChanges();
+            return true;
+        }
+
         public async Task<bool> ActiveAccount(string ActiveCode)
         {
             var user = await GetUserByActiveCode(ActiveCode);

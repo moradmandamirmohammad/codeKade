@@ -110,5 +110,22 @@ namespace codeKade.Web.Areas.Admin.Controllers
             var users = await _userService.GetTodayUsers(filter);
             return View(users);
         }
+
+        public async Task<IActionResult> DeletedUsers(FilterUserDTO filter)
+        {
+            var users = await _userService.GetDeletedUsers(filter);
+
+            return View(users);
+        }
+
+        public async Task<IActionResult> ReturnDeletedUser(long id)
+        {
+            var res = await _userService.ReturnDeletedUser(id);
+            if (res)
+            {
+                TempData[SuccessMessage] = "کاربر با موفقیت بازگشت داده شد";
+            }
+            return RedirectToAction("Index", "User", new { area = "Admin" });
+        }
     }
 }
