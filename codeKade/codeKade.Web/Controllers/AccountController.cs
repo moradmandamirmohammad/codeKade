@@ -17,12 +17,13 @@ public class AccountController : SiteBaseController
 
     private readonly IUserService _userService;
     private readonly IViewRenderService _viewRenderService;
+    private readonly ISchoolService _schoolService;
 
-
-    public AccountController(IUserService userService, IViewRenderService viewRenderService)
+    public AccountController(IUserService userService, IViewRenderService viewRenderService, ISchoolService schoolService)
     {
         _userService = userService;
         _viewRenderService = viewRenderService;
+        _schoolService = schoolService;
     }
 
     #endregion
@@ -30,8 +31,9 @@ public class AccountController : SiteBaseController
     #region Regsiter
 
     [HttpGet("register")]
-    public IActionResult Register()
+    public async Task<IActionResult> Register()
     {
+        ViewBag.Schools = await _schoolService.GetAllSchools();
         return View();
     }
 

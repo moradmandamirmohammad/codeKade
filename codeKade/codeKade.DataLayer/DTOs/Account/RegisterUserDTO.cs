@@ -19,6 +19,9 @@ namespace codeKade.DataLayer.DTOs.Account
         [MaxLength(100, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string LastName { get; set; }
 
+        [Display(Name="کد هنرستان")]
+        public long? SchoolId { get; set; }
+
         [Display(Name = "شماره تلفن همراه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(11, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]

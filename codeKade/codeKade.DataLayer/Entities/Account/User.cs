@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using codeKade.DataLayer.Entities.Comment;
 using codeKade.DataLayer.Entities.Common;
 
@@ -30,6 +25,9 @@ namespace codeKade.DataLayer.Entities.Account
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [MaxLength(200, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
         public string Email { get; set; }
+
+        [Display(Name = "کد هنرستان")]
+        public long? SchoolId { get; set; }
 
         [Display(Name = "آدرس")]
         [MaxLength(500, ErrorMessage = "{0} نمیتواند بیشتر از {1} کارکتر باشد")]
@@ -68,5 +66,8 @@ namespace codeKade.DataLayer.Entities.Account
         public List<Blog.Blog> Blogs { get; set; }
 
         public List<BlogComment> BlogComments { get; set; }
+
+        public School.School School { get; set; }
+
     }
 }

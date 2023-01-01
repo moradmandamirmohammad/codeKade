@@ -2,6 +2,7 @@
 using codeKade.DataLayer.Entities.Blog;
 using codeKade.DataLayer.Entities.Comment;
 using codeKade.DataLayer.Entities.Event;
+using codeKade.DataLayer.Entities.School;
 using Microsoft.EntityFrameworkCore;
 
 namespace codeKade.DataLayer.Context
@@ -41,6 +42,12 @@ namespace codeKade.DataLayer.Context
 
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
+
+        #endregion
+
+        #region School
+
+        public DbSet<School> Schools { get; set; }
 
         #endregion
 

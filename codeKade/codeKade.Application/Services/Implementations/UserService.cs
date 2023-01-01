@@ -171,6 +171,17 @@ namespace codeKade.Application.Services.Implementations
             return filter;
         }
 
+        public async Task<bool> IsUserAdmin(long userId)
+        {
+            var user = await _userRepository.GetByID(userId);
+            if (user.IsAdmin)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<FilterUserDTO> GetDeletedUsers(FilterUserDTO filter)
         {
             var query = _userRepository.GetEntityQuery().AsQueryable();
@@ -276,19 +287,41 @@ namespace codeKade.Application.Services.Implementations
             {
                 return RegisterUserResult.EmailConflict;
             }
-            var user = new User
+
+            if (register.SchoolId == null)
             {
-                FirstName = register.FirstName,
-                LastName = register.LastName,
-                Email = register.Email,
-                Mobile = register.Mobile,
-                Password = _passwordHelper.EncodePasswordMd5(register.Password),
-                ActiveCode = Guid.NewGuid().ToString("N"),
-                Avatar = "usr_avatar.jpg",
-                IsAdmin = false
-            };
-            await _userRepository.AddEntity(user);
-            await _userRepository.SaveChanges();
+                var user = new User
+                {
+                    FirstName = register.FirstName,
+                    LastName = register.LastName,
+                    Email = register.Email,
+                    Mobile = register.Mobile,
+                    Password = _passwordHelper.EncodePasswordMd5(register.Password),
+                    ActiveCode = Guid.NewGuid().ToString("N"),
+                    Avatar = "usr_avatar.jpg",
+                    IsAdmin = false,
+                };
+                await _userRepository.AddEntity(user);
+                await _userRepository.SaveChanges();
+            }
+            else
+            {
+                var user = new User
+                {
+                    FirstName = register.FirstName,
+                    LastName = register.LastName,
+                    Email = register.Email,
+                    Mobile = register.Mobile,
+                    Password = _passwordHelper.EncodePasswordMd5(register.Password),
+                    ActiveCode = Guid.NewGuid().ToString("N"),
+                    Avatar = "usr_avatar.jpg",
+                    IsAdmin = false,
+                    SchoolId = register.SchoolId
+                };
+                await _userRepository.AddEntity(user);
+                await _userRepository.SaveChanges();
+            }
+            
             return RegisterUserResult.Success;
         }
 
