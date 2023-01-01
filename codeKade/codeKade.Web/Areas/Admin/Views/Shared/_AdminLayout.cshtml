@@ -74,7 +74,7 @@
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-user"></i> <span> کاربران </span><span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
                                 <li><a asp-area="Admin" asp-controller="User" asp-action="Index"><i class="dripicons-user-group"></i> همه کاربران</a></li>
-                                <li><a href="ui-alerts.html"><i class="dripicons-checkmark"></i> کاربران فعال </a></li>
+                                <li><a asp-area="Admin" asp-controller="User" asp-action="TodayUsers"><i class="dripicons-checkmark"></i> کاربران امروز </a></li>
                                 <li><a href="ui-alerts.html"><i class="dripicons-document-remove"></i> کاربران حذف شده </a></li>
                             </ul>
                         </li>
@@ -199,7 +199,8 @@
     <script src="/assets/js/jquery.blockUI.js"></script>
     <script src="/assets/js/waves.js"></script>
     <script src="/assets/js/jquery.nicescroll.js"></script>
-    <script src="/assets/js/jquery.scrollTo.min.js"></script>
+<script src="/assets/js/jquery.scrollTo.min.js"></script>
+<script src="/js/notifications.js"></script>
 
     <!--Morris Chart-->
     <script src="/plugins/morris/morris.min.js"></script>

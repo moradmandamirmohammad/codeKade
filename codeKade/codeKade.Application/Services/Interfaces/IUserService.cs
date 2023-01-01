@@ -32,5 +32,7 @@ namespace codeKade.Application.Services.Interfaces
         Task<long> DeleteUser(long id);
 
         Task<bool> ChangePermission(long id);
+
+        Task<FilterUserDTO> GetTodayUsers(FilterUserDTO filter);
     }
 }

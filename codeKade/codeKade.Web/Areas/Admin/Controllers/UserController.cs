@@ -21,7 +21,11 @@ namespace codeKade.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUserDetail(long id)
         {
-            return PartialView("_UserDetail",await _userService.GetById(id));
+            if (id == 0)
+            {
+                return RedirectToAction("Index", "User", new { area = "Admin" });
+            }
+            return PartialView("_UserDetail", await _userService.GetById(id));
         }
 
         public async Task<IActionResult> AddUser()
@@ -32,7 +36,27 @@ namespace codeKade.Web.Areas.Admin.Controllers
         public async Task<IActionResult> EditUser(long id)
         {
             var user = await _userService.GetById(id);
-            return PartialView("_AddUser" , user);
+            var editDetail = new EditProfileDTO()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                Mobile = user.Mobile,
+                Id = user.ID
+            };
+            return PartialView("_EditUser", editDetail);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUser(EditProfileDTO edit)
+        {
+            var res = await _userService.EditUser(edit);
+            if (res)
+            {
+                TempData[SuccessMessage] = "اطلاعات با موفقیت ویرایش شد";
+            }
+
+            return RedirectToAction("Index", "User", new { area = "Admin" });
         }
 
         [HttpPost]
@@ -42,8 +66,11 @@ namespace codeKade.Web.Areas.Admin.Controllers
             if (res == RegisterUserResult.EmailConflict)
             {
                 TempData[ErrorMessage] = "ایمیل وارد شده تکراری میباشد";
+                return RedirectToAction("Index", "User", new { area = "Admin" });
             }
-            return RedirectToAction("Index","User",new {area="Admin"});
+
+            TempData[SuccessMessage] = "کاربر جدید با موفقیت افزوده شد";
+            return RedirectToAction("Index", "User", new { area = "Admin" });
         }
 
         public async Task<IActionResult> DeleteUser(long id)
@@ -60,6 +87,7 @@ namespace codeKade.Web.Areas.Admin.Controllers
             }
             else
             {
+                TempData[SuccessMessage] = "کاربر با موفقیت حذف شد";
                 return Json(id);
             }
         }
@@ -75,6 +103,12 @@ namespace codeKade.Web.Areas.Admin.Controllers
 
             TempData[ErrorMessage] = "مشکلی در انجام فرایند پیش آمد";
             return RedirectToAction("Index", "User", new { area = "Admin" });
+        }
+
+        public async Task<IActionResult> TodayUsers(FilterUserDTO filter)
+        {
+            var users = await _userService.GetTodayUsers(filter);
+            return View(users);
         }
     }
 }

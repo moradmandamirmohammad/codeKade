@@ -1,7 +1,8 @@
 ﻿@model codeKade.DataLayer.DTOs.Account.FilterUserDTO
 @{
-    ViewData["Title"] = "کاربران";
+    ViewData["Title"] = "کاربران امروز";
 }
+
 <div class="row">
     <div class="col-sm-12">
         <div class="page-title-box">
@@ -24,7 +25,7 @@
 
                 <h4 class="mt-0 header-title"> جستجوی کاربر </h4>
 
-                <form asp-area="Admin" asp-controller="User" asp-action="Index" method="get" id="filter-form">
+                <form asp-area="Admin" asp-controller="User" asp-action="TodayUsers" method="get" id="filter-form">
                     <input type="hidden" asp-for="PageID" id="PageID"/>
                     <div class="form-group col-6">
                         <label> نام</label>
@@ -88,7 +89,7 @@
                                         <td>@(user.IsActive ? "فعال" : "غیرفعال")</td>
                                         <td>
                                             <a onclick="FillShowUser(@user.ID)" class="btn btn-success text-white" data-toggle="modal" data-target=".bs-example-modal-lg">مشاهده</a>
-                                            <a onclick="ShowEditUser(@user.ID)" class="btn btn-warning text-white">ویرایش</a>
+                                            <a class="btn btn-warning text-white">ویرایش</a>
                                             <a onclick="DeleteUser(@user.ID)" class="btn btn-danger text-white">حذف</a>
                                             @if (user.IsAdmin)
                                             {
@@ -114,7 +115,6 @@
 
 <div id="UserDetail"></div>
 <div id="AddUser"></div>
-<div id="EditUser"></div>
 
 @section Scripts{
     <script>
@@ -176,3 +176,5 @@
         }
     </script>
 }
+
+
