@@ -1036,7 +1036,7 @@ START LATEST NEWS
                 <div class="col-lg-4 col-md-6">
                     <div class="news">
                         <div class="news__thumbnail">
-                            <img src="@(blog.ImageName != null ? PathTools.BlogImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="News Thumbnail">
+                            <img src="@(blog.ImageName != null ? PathTools.BlogThumbImagePath + blog.ImageName : PathTools.DefaultBlogImage)" alt="News Thumbnail">
                         </div>
                         <div class="news__content">
                             <a asp-controller="Blog" asp-action="Details" asp-route-id="@blog.ID" class="news-title">

@@ -20,4 +20,6 @@ public interface IBlogService : IAsyncDisposable
     Task<int> CountOfTodayBlog();
 
     Task<int> CountOfBlogs();
+
+    Task<FilterBlogDTO> GetDeletedBlogs(FilterBlogDTO filter);
 }

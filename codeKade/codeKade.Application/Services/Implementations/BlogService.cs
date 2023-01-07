@@ -49,7 +49,7 @@ namespace codeKade.Application.Services.Implementations
             var entitiesCount = await query.CountAsync();
             filter.PageCount = (int)Math.Ceiling(entitiesCount / (double)filter.TakeEntity);
 
-            var products = await query.OrderBy(s => s.ID).Skip(filter.SkipEntity).Take(filter.TakeEntity)
+            var products = await query.Include(b=>b.BlogCategory).OrderBy(s => s.ID).Skip(filter.SkipEntity).Take(filter.TakeEntity)
                 .ToListAsync();
             filter.StartPage = filter.PageID - 3 > 0 ? filter.PageID - 3 : 1;
             filter.EndPage = filter.PageID + 3 <= filter.PageCount ? filter.PageID + 3 : filter.PageCount;
@@ -88,6 +88,28 @@ namespace codeKade.Application.Services.Implementations
         public async Task<int> CountOfBlogs()
         {
             return await _blogRepository.GetEntityQuery().CountAsync();
+        }
+
+        public async Task<FilterBlogDTO> GetDeletedBlogs(FilterBlogDTO filter)
+        {
+            var query = _blogRepository.GetEntityQuery().AsQueryable().IgnoreQueryFilters().Where(b=>b.IsDelete);
+
+            if (!string.IsNullOrEmpty(filter.Title))
+            {
+                query = query.Where(s => EF.Functions.Like(s.Title, $"%{filter.Title}%"));
+            }
+            
+
+            filter.SkipEntity = (filter.PageID - 1) * filter.TakeEntity;
+            var entitiesCount = await query.CountAsync();
+            filter.PageCount = (int)Math.Ceiling(entitiesCount / (double)filter.TakeEntity);
+
+            var products = await query.Include(b => b.BlogCategory).OrderBy(s => s.ID).Skip(filter.SkipEntity).Take(filter.TakeEntity)
+                .ToListAsync();
+            filter.StartPage = filter.PageID - 3 > 0 ? filter.PageID - 3 : 1;
+            filter.EndPage = filter.PageID + 3 <= filter.PageCount ? filter.PageID + 3 : filter.PageCount;
+            filter.Blogs = products;
+            return filter;
         }
     }
 }

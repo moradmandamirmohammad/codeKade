@@ -105,7 +105,8 @@
                         <li class="has_sub">
                             <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-blog"></i> <span> مقالات </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                             <ul class="list-unstyled">
-                                <li><a href="advanced-rating.html"><i class="dripicons-document"></i> همه مقالات </a></li>
+                                <li><a asp-area="Admin" asp-controller="Blog" asp-action="Index"><i class="dripicons-document"></i> همه مقالات </a></li>
+                                <li><a asp-area="Admin" asp-controller="Blog" asp-action="DeletedBlogs"><i class="dripicons-document"></i> مقالات حذف شده </a></li>
                                 <li><a href="advanced-rating.html"><i class="dripicons-plus"></i> مقاله جدید </a></li>
                             </ul>
                         </li>
