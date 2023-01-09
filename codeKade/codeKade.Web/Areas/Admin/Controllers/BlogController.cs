@@ -22,5 +22,11 @@ namespace codeKade.Web.Areas.Admin.Controllers
         {
             return View(await _blogService.GetDeletedBlogs(filter));
         }
+
+        public async Task<IActionResult> Add()
+        {
+            ViewBag.Categories = await _blogService.GetCategories();
+            return View();
+        }
     }
 }
