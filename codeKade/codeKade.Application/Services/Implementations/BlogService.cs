@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using codeKade.Application.PathExtentions;
+using codeKade.Application.Security;
 using codeKade.Application.Services.Interfaces;
 using codeKade.DataLayer.DTOs.Blog;
 using codeKade.DataLayer.Entities.Blog;
 using codeKade.DataLayer.Repository.Interfaces;
+using LightElectric.Application.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace codeKade.Application.Services.Implementations
@@ -110,6 +113,31 @@ namespace codeKade.Application.Services.Implementations
             filter.EndPage = filter.PageID + 3 <= filter.PageCount ? filter.PageID + 3 : filter.PageCount;
             filter.Blogs = products;
             return filter;
+        }
+
+        public async Task<bool> AddBlog(AddBlogDTO add)
+        {
+            if (add.Image != null && add.Image.IsImage())
+            {
+                var ImageName = Guid.NewGuid().ToString("N") + Path.GetExtension(add.Image.FileName);
+                add.Image.AddImageToServer(ImageName, PathTools.UserImageUpload, 150, 100, null);
+                add.ImageName = ImageName;
+            }
+            else
+            {
+                return false;
+            }
+            var blog = new Blog()
+            {
+                BlogCategoryId = add.BlogCategoryId,
+                Body = add.Body,
+                IsDelete = false,
+                Title = add.Title,
+                UserId = add.UserId,
+            };
+            await _blogRepository.AddEntity(blog);
+            await _blogRepository.SaveChanges();
+            return true;
         }
     }
 }

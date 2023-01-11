@@ -1,5 +1,6 @@
 ﻿using codeKade.Application.Services.Interfaces;
 using codeKade.DataLayer.DTOs.Blog;
+using codeKade.Web.HttpContext;
 using Microsoft.AspNetCore.Mvc;
 
 namespace codeKade.Web.Areas.Admin.Controllers
@@ -26,6 +27,27 @@ namespace codeKade.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Add()
         {
             ViewBag.Categories = await _blogService.GetCategories();
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(AddBlogDTO add)
+        {
+            add.UserId = User.GetUserID();
+            add.ImageName = add.Image.FileName;
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Categories = await _blogService.GetCategories();
+                return View();
+            }
+
+            if (await _blogService.AddBlog(add))
+            {
+
+                TempData[SuccessMessage] = "مقاله با موفقیت افزوده بود";
+                return RedirectToAction("Index","Blog" ,new {Area="Admin"});
+            }
+
             return View();
         }
     }
