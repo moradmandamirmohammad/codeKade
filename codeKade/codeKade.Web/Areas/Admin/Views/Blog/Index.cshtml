@@ -76,7 +76,7 @@
                                         <th scope="row">@blog.ID</th>
                                         <td>@blog.Title</td>
                                         <td>@blog.Seen</td>
-                                        <td>@(blog.User.FirstName + blog.User.LastName)</td>
+                                        <td>@(blog.User.FirstName + " " + blog.User.LastName)</td>
                                         <td>@blog.BlogCategory.Title</td>
                                         <td>@blog.CreateDate.ToFa("B")</td>
                                         <td>
